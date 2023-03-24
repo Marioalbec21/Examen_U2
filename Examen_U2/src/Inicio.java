@@ -13,8 +13,8 @@ public class Inicio extends JPanel{
 		setBackground(Color.decode("#154D82"));
 		setLayout(null);
 		
-		//Texto de bienvenida
-		JLabel bienvenida = new JLabel("Hola", JLabel.CENTER);
+		//Componentes del panel
+		JLabel bienvenida = new JLabel("Hola", JLabel.CENTER); //Texto de bienvenida
 		bienvenida.setFont(new Font("Comic Sans", Font.BOLD,35));
 		bienvenida.setForeground(Color.white);
 		bienvenida.setSize(400,80);

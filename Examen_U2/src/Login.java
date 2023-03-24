@@ -12,12 +12,11 @@ public class Login extends JPanel{
 	private JButton cancelar;
 	
 	public Login() {
-		
 		//Propiedades del panel
 		setBackground(Color.decode("#154D82"));
 		setLayout(null);
 		
-		//Elementos y componentes
+		//Componentes del panel
 		JLabel bienvenida = new JLabel("Iniciar sesión", JLabel.CENTER);
 		bienvenida.setFont(new Font("Comic Sans", Font.ITALIC,35));
 		bienvenida.setForeground(Color.orange);
@@ -68,11 +67,12 @@ public class Login extends JPanel{
 		add(cancelar);
 	}
 	
+	//Getters de botones de acción
 	public JButton getIniciar() {
 		return iniciar;
 	}
+	
 	public JButton getCancelar() {
 		return cancelar;
 	}
-	
 }
