@@ -1,4 +1,12 @@
+import java.awt.Color;
 
-public class Carga {
+import javax.swing.JPanel;
+
+public class Carga extends JPanel {
+	
+	public Carga() {
+		setBackground(Color.decode("#154D82"));
+		setLayout(null);
+	}
 	
 }
