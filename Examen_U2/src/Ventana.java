@@ -21,6 +21,7 @@ public class Ventana extends JFrame{
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
 	private Cuenta cuenta = new Cuenta();
+	private Lista lista = new Lista();
 	
 	public Ventana() {
 		//Propiedades de la ventana
