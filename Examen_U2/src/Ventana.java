@@ -17,6 +17,11 @@ public class Ventana extends JFrame{
 	private int ancho = 600;
 	private int contador = 0;
 	
+	//Paneles de la aplicacion
+	private Login login = new Login();
+	private Inicio inicio = new Inicio();
+	private Cuenta cuenta = new Cuenta();
+	
 	public Ventana() {
 		//Propiedades de la ventana
 		super("Sistema");
@@ -29,13 +34,12 @@ public class Ventana extends JFrame{
 	    
 		//Inicia Pantalla y login
 		pantallaCarga();
-	
+		
 	    //Actualiza la ventana
 	    actualizar();
 	}
 	
 	public void mostrarLogin() {
-		Login login = new Login();
 	    add(login);
 	    
 	    //Boton acceder de login
@@ -44,14 +48,13 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Ingresando al sistema...",
 						          "Iniciando",JOptionPane.INFORMATION_MESSAGE);
-				Inicio inicio = new Inicio();
 				
 				//Remueve el login
 				remove(login);
 				//Añade el panel inicio
 				add(inicio);			
 				//Añade la barra del menu inicio
-				setJMenuBar(inicio.barra());			
+				setJMenuBar(inicio.getMenu());			
 				//Actualizar ventana
 				actualizar();
 			}
@@ -66,6 +69,38 @@ public class Ventana extends JFrame{
 
 				//Salir de la aplicación
 				salir();
+			}
+	    });
+	}
+	
+	//Opciones del menu superior
+	public void opcionesMenu() {
+		inicio.getMenu().getItem1().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve el login
+				remove(inicio);
+				//Añade el panel inicio
+				add(cuenta);			
+				//Actualizar ventana
+				actualizar();
+			}
+	    });
+		cuenta.getCancelar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve el login
+				remove(cuenta);
+				//Añade el panel inicio
+				add(inicio);			
+				//Actualizar ventana
+				actualizar();
+			}
+	    });
+		cuenta.getActualizar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cuenta.actualizarDatos();
 			}
 	    });
 	}
@@ -86,6 +121,7 @@ public class Ventana extends JFrame{
 				contador++;
 				if(contador == 3) {
 					mostrarLogin();
+					opcionesMenu();
 					panelCarga.setVisible(false);
 					timer.cancel();	
 				}

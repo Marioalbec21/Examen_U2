@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -13,6 +14,10 @@ public class Cuenta extends JPanel{
 	private Dimension tamañoRect = new Dimension(250, 25);
 	private Point ubicacion = new Point(120, 190);
 	private int intervalo = 35;
+	
+	//Botones de acción
+	private JButton cancelar;
+	private JButton actualizar;
 	
 	public Cuenta() {
 		//Propiedades del panel
@@ -72,12 +77,12 @@ public class Cuenta extends JPanel{
 		add(contraseña);
 		add(txtfContraseña);
 
-		//Botones inferiores
+		//Botones de accion
 		intervalo*=1.5;
-		JButton cancelar = new JButton("Cancelar");
+		cancelar = new JButton("Cancelar"); //Boton cancelar
 		cancelar.setSize(90,25);
 		cancelar.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		JButton actualizar = new JButton("Actualizar datos");
+		actualizar = new JButton("Actualizar datos"); //Boton actualizar
 		actualizar.setSize(131,25);
 		actualizar.setLocation(ubicacion.x+ubicacion.x, ubicacion.y);
 
@@ -90,5 +95,20 @@ public class Cuenta extends JPanel{
 		fondo.setSize(300, 350);
 		fondo.setLocation(100,180);
 		add(fondo);
+	}
+	
+	//Metodo para actualizar datos del usuario
+	public void actualizarDatos() {
+		JOptionPane.showMessageDialog(null, "Información actualizada.",
+		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	//Getters del panel
+	public JButton getCancelar() {
+		return cancelar;
+	}
+
+	public JButton getActualizar() {
+		return actualizar;
 	}
 }
