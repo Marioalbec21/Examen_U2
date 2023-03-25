@@ -160,5 +160,5 @@ public class Login extends JPanel{
 	public JButton getIniciar() {
 		return iniciar;
 	}
-
+	
 }
