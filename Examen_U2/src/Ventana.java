@@ -17,6 +17,9 @@ public class Ventana extends JFrame{
 	private int ancho = 600;
 	private int contador = 0;
 	
+	//Menu del panel
+	private Menu menu = new Menu();
+	
 	//Paneles de la aplicacion
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
@@ -37,9 +40,6 @@ public class Ventana extends JFrame{
 	    
 		//Inicia Pantalla y login
 		pantallaCarga();
-		
-	    //Actualiza la ventana
-	    actualizar();
 	}
 	
 	public void mostrarLogin() {
@@ -50,17 +50,16 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Ingresando al sistema...",
-						          "Iniciando",JOptionPane.INFORMATION_MESSAGE);
-				
-				//Remueve el login
-				remove(login);
+						"Iniciando",JOptionPane.INFORMATION_MESSAGE);	
+				System.out.println("mensaje de acceso");
+				//Remueve todos los paneles
+				removerPaneles();
 				//Añade el panel inicio
-				add(inicio);			
-				//Añade la barra del menu inicio
-				inicio.getMenu().setVisible(true);
-				setJMenuBar(inicio.getMenu());			
+				add(inicio);	
+				//Repintar el menu
+				añadirMenu();
 				//Actualizar ventana
-				actualizar();
+				actualizar();		
 			}
 	    });
 	    
@@ -83,10 +82,10 @@ public class Ventana extends JFrame{
 		cuenta.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Remueve el login
-				remove(cuenta);
+				//Remueve todos los paneles
+				removerPaneles();
 				//Añade el panel inicio
-				add(inicio);			
+				add(inicio);
 				//Actualizar ventana
 				actualizar();
 			}
@@ -108,10 +107,10 @@ public class Ventana extends JFrame{
 		registro.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Remueve el login
-				remove(registro);
+				//Remueve todos los paneles
+				removerPaneles();			
 				//Añade el panel inicio
-				add(inicio);			
+				add(inicio);	
 				//Actualizar ventana
 				actualizar();
 			}
@@ -133,8 +132,8 @@ public class Ventana extends JFrame{
 		ayuda.getCrear().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Remueve el login
-				remove(ayuda);
+				//Remueve todos los paneles
+				removerPaneles();
 				//Añade el panel inicio
 				add(registro);			
 				//Actualizar ventana
@@ -143,60 +142,48 @@ public class Ventana extends JFrame{
 		});
 	}
 	
-	public void mostrarLista() {
-		add(lista);
-	}
-	
-	public void removerPaneles() {
-		//Remueve todos los paneles
-		remove(inicio);
-		remove(cuenta);
-		remove(lista);
-		remove(registro);
-		remove(ayuda);
-	}
-	
 	//Opciones del menu superior
 	public void opcionesMenu() {
-		inicio.getMenu().getItem1().addActionListener(new ActionListener() {
+		menu.getMenu().getItem1().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Remueve el login
+				//Remueve todos los paneles
 				removerPaneles();
 				//Añade el panel inicio
-				mostrarCuenta();	
+				mostrarCuenta();
 				//Actualizar ventana
 				actualizar();
 			}
 	    });
 		
-		inicio.getMenu().getItem2().addActionListener(new ActionListener() {
+		menu.getMenu().getItem2().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
 				//Añade el panel inicio
-				inicio.getMenu().setVisible(false);	
 				mostrarLogin();	
+				//Ocultar el menu
+				ocultarMenu();
 				//Actualizar ventana
 				actualizar();	
 			}
 		});
 		
-		inicio.getMenu().getItem3().addActionListener(new ActionListener() {
+		menu.getMenu().getItem3().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
 				//Añade el panel inicio
-				mostrarLista();	
+				add(lista);
 				//Actualizar ventana
 				actualizar();	
 			}
 			
 		});
 		
-		inicio.getMenu().getItem4().addActionListener(new ActionListener() {
+		menu.getMenu().getItem4().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -209,7 +196,7 @@ public class Ventana extends JFrame{
 			}
 		});
 		
-		inicio.getMenu().getItem5().addActionListener(new ActionListener() {
+		menu.getMenu().getItem5().addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +209,7 @@ public class Ventana extends JFrame{
 			}
 		});
 	}
-	
+
 	//Metodo para la pantalla de carga
 	public void pantallaCarga() {
 		Carga carga = new Carga();
@@ -253,6 +240,29 @@ public class Ventana extends JFrame{
 	public void actualizar(){
 		repaint();
 		revalidate();
+		System.out.println("actualiza ventana\n");
+	}
+	
+	//Metodo para añadir el menu
+	public void añadirMenu() {
+		menu.getMenu().setVisible(true);
+		setJMenuBar(menu.getMenu());	
+	}
+	
+	//Metodo para ocultar el menu
+	public void ocultarMenu() {
+		menu.getMenu().setVisible(false);
+	}
+	
+	public void removerPaneles() {
+		//Remueve todos los paneles
+		remove(login);
+		remove(inicio);
+		remove(cuenta);
+		remove(lista);
+		remove(registro);
+		remove(ayuda);
+		System.out.println("borrar paneles");
 	}
 	
 	//Metodo para cerrar la aplicación
