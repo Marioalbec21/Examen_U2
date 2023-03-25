@@ -4,9 +4,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Inicio extends JPanel{
-
-	//Menu del panel
-	private Menu menu = new Menu();
 	
 	public Inicio() {
 		//Propiedades del panel
@@ -20,10 +17,5 @@ public class Inicio extends JPanel{
 		bienvenida.setSize(400,80);
 		bienvenida.setLocation(50,40);
 		add(bienvenida);		
-	}
-	
-	//Metodo para Crear la barra de menú
-	public Menu getMenu() {
-		return menu;
 	}
 }

@@ -111,4 +111,5 @@ public class Cuenta extends JPanel{
 	public JButton getActualizar() {
 		return actualizar;
 	}
+	
 }

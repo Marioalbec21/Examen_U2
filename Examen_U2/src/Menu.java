@@ -28,6 +28,10 @@ public class Menu extends JMenuBar{
 	}
 
 	//Getters del menu
+	public Menu getMenu() {
+		return this;
+	}
+	
 	public JMenu getCuenta() {
 		return cuenta;
 	}
