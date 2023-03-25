@@ -9,7 +9,7 @@ public class Ayuda extends JPanel{
 
 	private Color colorFuente = Color.white;
 	private Point ubicacion = new Point(90,500);  //modifica la ubicacion de los componentes
-	
+	private JButton crear;
 	public Ayuda() {
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
@@ -41,7 +41,7 @@ public class Ayuda extends JPanel{
 		add(pasos);
 		
 		//Boton crear usuario
-		JButton crear = new JButton("Crear Usuario");
+		crear = new JButton("Crear Usuario");
 		crear.setSize(131,25);
 		crear.setLocation(ubicacion.x+ubicacion.x, ubicacion.y);
 		add(crear);
@@ -52,5 +52,10 @@ public class Ayuda extends JPanel{
 		fondo.setSize(320, 320);
 		fondo.setLocation(90,230);
 		add(fondo);
+	}
+	
+	//Getters del panel
+	public JButton getCrear() {
+		return crear;
 	}
 }

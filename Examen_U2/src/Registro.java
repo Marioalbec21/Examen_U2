@@ -3,6 +3,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -13,6 +14,10 @@ public class Registro extends JPanel{
 	private Dimension tamañoRect = new Dimension(250, 25);
 	private Point ubicacion = new Point(120, 140);  //modifica la ubicacion de los componentes
 	private int intervalo = 35;
+	
+	//Botones de acción
+	private JButton cancelar;
+	private JButton crear;
 	
 	public Registro() {
 		//Propiedades del panel
@@ -85,10 +90,10 @@ public class Registro extends JPanel{
 		
 		//Botones inferiores
 		intervalo*=1.5;
-		JButton cancelar = new JButton("Cancelar");
+		cancelar = new JButton("Cancelar");
 		cancelar.setSize(90,25);
 		cancelar.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		JButton crear = new JButton("Crear Usuario");
+		crear = new JButton("Crear Usuario");
 		crear.setSize(131,25);
 		crear.setLocation(ubicacion.x+ubicacion.x, ubicacion.y);
 
@@ -101,5 +106,19 @@ public class Registro extends JPanel{
 		fondo.setSize(300, 420);
 		fondo.setLocation(100,130);
 		add(fondo);
+	}
+	//Metodo para registro del usuario
+	public void registro() {
+		JOptionPane.showMessageDialog(null, "Usuario creado",
+		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+	}
+		
+	//Getters del panel
+	public JButton getCancelar() {
+		return cancelar;
+	}
+
+	public JButton getCrear() {
+		return crear;
 	}
 }
