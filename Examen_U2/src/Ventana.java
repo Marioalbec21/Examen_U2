@@ -144,13 +144,14 @@ public class Ventana extends JFrame{
 	}
 	
 	public void mostrarLista() {
-		
+		add(lista);
 	}
 	
 	public void removerPaneles() {
 		//Remueve todos los paneles
 		remove(inicio);
 		remove(cuenta);
+		remove(lista);
 		remove(registro);
 		remove(ayuda);
 	}
@@ -161,7 +162,7 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Remueve el login
-				remove(inicio);
+				removerPaneles();
 				//Añade el panel inicio
 				mostrarCuenta();	
 				//Actualizar ventana
@@ -188,7 +189,7 @@ public class Ventana extends JFrame{
 				//Remueve todos los paneles
 				removerPaneles();
 				//Añade el panel inicio
-				//mostrarLista();	
+				mostrarLista();	
 				//Actualizar ventana
 				actualizar();	
 			}
