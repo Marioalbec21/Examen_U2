@@ -22,6 +22,8 @@ public class Ventana extends JFrame{
 	private Inicio inicio = new Inicio();
 	private Cuenta cuenta = new Cuenta();
 	private Lista lista = new Lista();
+	private Registro registro = new Registro();
+	private Ayuda ayuda  = new Ayuda();
 	
 	public Ventana() {
 		//Propiedades de la ventana
@@ -55,6 +57,7 @@ public class Ventana extends JFrame{
 				//Añade el panel inicio
 				add(inicio);			
 				//Añade la barra del menu inicio
+				inicio.getMenu().setVisible(true);
 				setJMenuBar(inicio.getMenu());			
 				//Actualizar ventana
 				actualizar();
@@ -67,26 +70,16 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Saliendo del sistema...",
 						          "Iniciando",JOptionPane.INFORMATION_MESSAGE);
-
 				//Salir de la aplicación
 				salir();
 			}
 	    });
 	}
 	
-	//Opciones del menu superior
-	public void opcionesMenu() {
-		inicio.getMenu().getItem1().addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//Remueve el login
-				remove(inicio);
-				//Añade el panel inicio
-				add(cuenta);			
-				//Actualizar ventana
-				actualizar();
-			}
-	    });
+	public void mostrarCuenta() {
+		add(cuenta);
+		
+		//Boton cancelar de cuenta
 		cuenta.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -98,12 +91,135 @@ public class Ventana extends JFrame{
 				actualizar();
 			}
 	    });
+		
+		//Boton actualizar de cuenta
 		cuenta.getActualizar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cuenta.actualizarDatos();
 			}
 	    });
+	}
+	
+	public void mostrarRegistro() {
+		add(registro);
+		
+		//Boton cancelar de registro
+		registro.getCancelar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve el login
+				remove(registro);
+				//Añade el panel inicio
+				add(inicio);			
+				//Actualizar ventana
+				actualizar();
+			}
+		});
+		
+		//Boton crear de registro
+		registro.getCrear().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				registro.registro();
+			}
+		});	
+	}
+	
+	public void mostrarAyuda() {
+		add(ayuda);
+		
+		//Boton crear de ayuda
+		ayuda.getCrear().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve el login
+				remove(ayuda);
+				//Añade el panel inicio
+				add(registro);			
+				//Actualizar ventana
+				actualizar();
+			}
+		});
+	}
+	
+	public void mostrarLista() {
+		
+	}
+	
+	public void removerPaneles() {
+		//Remueve todos los paneles
+		remove(inicio);
+		remove(cuenta);
+		remove(registro);
+		remove(ayuda);
+	}
+	
+	//Opciones del menu superior
+	public void opcionesMenu() {
+		inicio.getMenu().getItem1().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve el login
+				remove(inicio);
+				//Añade el panel inicio
+				mostrarCuenta();	
+				//Actualizar ventana
+				actualizar();
+			}
+	    });
+		
+		inicio.getMenu().getItem2().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel inicio
+				inicio.getMenu().setVisible(false);	
+				mostrarLogin();	
+				//Actualizar ventana
+				actualizar();	
+			}
+		});
+		
+		inicio.getMenu().getItem3().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel inicio
+				//mostrarLista();	
+				//Actualizar ventana
+				actualizar();	
+			}
+			
+		});
+		
+		inicio.getMenu().getItem4().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel inicio
+				mostrarRegistro();	
+				//Actualizar ventana
+				actualizar();	
+			}
+		});
+		
+		inicio.getMenu().getItem5().addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel inicio
+				mostrarAyuda();	
+				//Actualizar ventana
+				actualizar();	
+			}
+		});
 	}
 	
 	//Metodo para la pantalla de carga
