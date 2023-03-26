@@ -51,9 +51,10 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Ingresando al sistema...",
 						"Iniciando",JOptionPane.INFORMATION_MESSAGE);	
-				System.out.println("mensaje de acceso");
 				//Remueve todos los paneles
 				removerPaneles();
+				//Remueve el actionListener del boton iniciar sesion
+		        login.getIniciar().removeActionListener(this);
 				//Añade el panel inicio
 				add(inicio);	
 				//Repintar el menu
@@ -84,6 +85,8 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
+				//Remueve el actionListener del boton cancelar
+		        cuenta.getCancelar().removeActionListener(this);
 				//Añade el panel inicio
 				add(inicio);
 				//Actualizar ventana
@@ -95,6 +98,10 @@ public class Ventana extends JFrame{
 		cuenta.getActualizar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Remueve el actionListener del boton actualizar
+		        cuenta.getActualizar().removeActionListener(this);
+		        
+				//Metodo para validar el registro
 				cuenta.actualizarDatos();
 			}
 	    });
@@ -108,7 +115,9 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
-				removerPaneles();			
+				removerPaneles();
+				//Remueve el actionListener del boton cancelar
+				registro.getCancelar().removeActionListener(this);
 				//Añade el panel inicio
 				add(inicio);	
 				//Actualizar ventana
@@ -120,6 +129,10 @@ public class Ventana extends JFrame{
 		registro.getCrear().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				//Remueve el actionListener del boton crear usuario
+				registro.getCrear().removeActionListener(this);
+				
+				//Metodo para validar el registro de usuario
 				registro.registro();
 			}
 		});	
@@ -134,6 +147,8 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
+				//Remueve el actionListener del boton crear usuario
+				ayuda.getCrear().removeActionListener(this);
 				//Añade el panel inicio
 				add(registro);			
 				//Actualizar ventana
@@ -240,7 +255,7 @@ public class Ventana extends JFrame{
 	public void actualizar(){
 		repaint();
 		revalidate();
-		System.out.println("actualiza ventana\n");
+		System.out.println("Actualiza ventana\n");
 	}
 	
 	//Metodo para añadir el menu
@@ -262,7 +277,7 @@ public class Ventana extends JFrame{
 		remove(lista);
 		remove(registro);
 		remove(ayuda);
-		System.out.println("borrar paneles");
+		System.out.println("Borrar paneles");
 	}
 	
 	//Metodo para cerrar la aplicación
