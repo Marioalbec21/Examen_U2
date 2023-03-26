@@ -25,5 +25,4 @@ public class Inicio extends JPanel{
 	public void setNombreUsuario(String nombreUsuario) {
 		titulo.setText("Hola "+nombreUsuario);
 	}
-	
 }

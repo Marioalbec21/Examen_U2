@@ -19,7 +19,7 @@ public class Ventana extends JFrame{
 	
 	//Menu del panel
 	private Menu menu = new Menu();
-	
+
 	//Paneles de la aplicacion
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
@@ -60,7 +60,7 @@ public class Ventana extends JFrame{
 					//Añade el panel inicio
 					add(inicio);
 					//Pasa el nombre del usuario a la ventana inicio
-					inicio.setNombreUsuario(login.getDatosUsuario()[1]);
+					inicio.setNombreUsuario(login.getUsuarios().getDatosUsuario(1));
 					//Repintar el menu
 					añadirMenu();
 					//Actualizar ventana
@@ -111,7 +111,7 @@ public class Ventana extends JFrame{
 		        cuenta.getActualizar().removeActionListener(this);
 		        
 				//Metodo para validar el registro
-				cuenta.actualizarDatos();
+				cuenta.actualizarDatos(login.getUsuarios().getDatosUsuario(0));
 			}
 	    });
 	}

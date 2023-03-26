@@ -1,1 +1,3 @@
-mimi,mimi1,mimi2,mimi@,mimi123
+mimi,1,2,3,4
+marisol,fernandez,trapecio,@solsito,sol123
+sol,solecito,hernandez,@sol,sol123

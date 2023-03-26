@@ -19,9 +19,8 @@ public class Login extends JPanel{
 	//Botones de acción
 	private JButton cancelar;
 	private JButton iniciar;
-	
-	//Arreglo de datos del usuario
-	private String[] datosUsuario = new String[5];
+
+	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
 	public Login() {
 		//Propiedades del panel
@@ -83,16 +82,15 @@ public class Login extends JPanel{
 	public boolean comprobarDatos() {
 		boolean datosCorrectos = false;
 		
-		Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 		for(int i = 0; i < usuarios.getTamañoLista(); i++) {
 			
 			//Pasa los datos de la linea de texto a un arreglo
-			if(usuarios.getListaUsuarios(i).contains(txtfUsuario.getText())) {
-				datosUsuario = usuarios.getListaUsuarios(i).split(",");
-				
+			if(usuarios.getListaUsuarios(i).contains(txtfUsuario.getText()+",")) {
+				usuarios.setDatosUsuario(usuarios.getListaUsuarios(i).split(","));
+
 				//Comprueba que el usuario y contraseña esten correctos
-				if(txtfUsuario.getText().contains(datosUsuario[0]) && 
-						txtfContraseña.getText().contains(datosUsuario[4])) {
+				if(txtfUsuario.getText().equals(usuarios.getDatosUsuario(0)) && 
+						txtfContraseña.getText().equals(usuarios.getDatosUsuario(4))) {
 					datosCorrectos = true;
 				}
 				else {
@@ -112,7 +110,7 @@ public class Login extends JPanel{
 		return iniciar;
 	}
 
-	public String[] getDatosUsuario() {
-		return datosUsuario;
+	public Usuarios getUsuarios() {
+		return usuarios;
 	}
 }
