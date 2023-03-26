@@ -124,16 +124,6 @@ public class Registro extends JPanel{
 		fondo.setLocation(100,130);
 		add(fondo);
 	}
-	
-	//Metodo para registro del usuario
-	public void registrarUsuario() {
-		Usuarios usuarios = new Usuarios("users.txt");
-		usuarios.añadirUsuario(txtfUsuario.getText(), txtfNombre.getText(), 
-				txtfApellido.getText(), txtfEmail.getText(), txtfContraseña.getText());
-		
-		JOptionPane.showMessageDialog(null, "Usuario creado",
-		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
-	}
 		
 	//Getters del panel
 	public JButton getCancelar() {
@@ -142,5 +132,29 @@ public class Registro extends JPanel{
 
 	public JButton getCrear() {
 		return crear;
+	}
+
+	public String getNombre() {
+		return txtfNombre.getText();
+	}
+
+	public String getApellido() {
+		return txtfApellido.getText();
+	}
+
+	public String getUsuario() {
+		return txtfUsuario.getText();
+	}
+
+	public String getEmail() {
+		return txtfEmail.getText();
+	}
+
+	public String getContraseña() {
+		return txtfContraseña.getText();
+	}
+
+	public String getConfirmarContra() {
+		return txtfconfirmarContra.getText();
 	}
 }

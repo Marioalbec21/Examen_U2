@@ -19,11 +19,12 @@ public class Cuenta extends JPanel{
 	private JButton cancelar;
 	private JButton actualizar;
 	
-	JTextField txtfNombre;
-	JTextField txtfApellido;
-	JTextField txtfEmail;
-	JTextField txtfContraseña;
-	
+	//Datos del la cuenta
+	private JTextField txtfNombre;
+	private JTextField txtfApellido;
+	private JTextField txtfEmail;
+	private JTextField txtfContraseña;
+		
 	public Cuenta() {
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
@@ -102,27 +103,6 @@ public class Cuenta extends JPanel{
 		add(fondo);
 	}
 	
-	//Metodo para actualizar datos del usuario
-	public void actualizarDatos(String username) {
-		Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
-		for(int i = 0; i < usuarios.getTamañoLista(); i++) {
-			
-			//Actualiza los datos del usuario
-			if(usuarios.getListaUsuarios(i).contains(username)) {
-				usuarios.setDatosUsuario(0, username);
-				usuarios.setDatosUsuario(1, txtfNombre.getText());
-				usuarios.setDatosUsuario(2, txtfApellido.getText());
-				usuarios.setDatosUsuario(3, txtfEmail.getText());
-				usuarios.setDatosUsuario(4, txtfContraseña.getText());
-				
-				//Actualiza los datos del usuario en el users.txt
-				usuarios.editarUsuario(i);
-			}
-		}
-		JOptionPane.showMessageDialog(null, "Información actualizada.",
-		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
-	}
-	
 	//Getters del panel
 	public JButton getCancelar() {
 		return cancelar;
@@ -130,5 +110,21 @@ public class Cuenta extends JPanel{
 
 	public JButton getActualizar() {
 		return actualizar;
+	}
+
+	public String getNombre() {
+		return txtfNombre.getText();
+	}
+
+	public String getApellido() {
+		return txtfApellido.getText();
+	}
+
+	public String getEmail() {
+		return txtfEmail.getText();
+	}
+
+	public String getContraseña() {
+		return txtfContraseña.getText();
 	}
 }

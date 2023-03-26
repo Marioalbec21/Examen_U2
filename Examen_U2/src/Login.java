@@ -12,21 +12,21 @@ public class Login extends JPanel{
 	private Dimension tamañoLbl = new Dimension(150, 40);
 	private Dimension tamañoRect = new Dimension(250, 25);
 	private Point ubicacion = new Point(120, 190);
+	private int intervalo = 35;
+
+	//Nombre de usuario y contraseña
 	private JTextField txtfUsuario ;
 	private JTextField txtfContraseña;
-	private int intervalo = 35;
-	
+		
 	//Botones de acción
 	private JButton cancelar;
 	private JButton iniciar;
-
-	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
 	public Login() {
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
 		setLayout(null);
-		
+
 		//Componentes del panel
 		JLabel titulo = new JLabel("Accede a tu cuenta", JLabel.CENTER);
 		titulo.setForeground(colorFuente);
@@ -78,29 +78,6 @@ public class Login extends JPanel{
 		add(fondo);
 	}
 	
-	//Metodo para validar datos
-	public boolean comprobarDatos() {
-		boolean datosCorrectos = false;
-		
-		for(int i = 0; i < usuarios.getTamañoLista(); i++) {
-			
-			//Pasa los datos de la linea de texto a un arreglo
-			if(usuarios.getListaUsuarios(i).contains(txtfUsuario.getText()+",")) {
-				usuarios.setDatosUsuario(usuarios.getListaUsuarios(i).split(","));
-
-				//Comprueba que el usuario y contraseña esten correctos
-				if(txtfUsuario.getText().equals(usuarios.getDatosUsuario(0)) && 
-						txtfContraseña.getText().equals(usuarios.getDatosUsuario(4))) {
-					datosCorrectos = true;
-				}
-				else {
-					datosCorrectos = false;
-				}
-			}
-		}
-		return datosCorrectos;
-	}
-	
 	//Getters del panel
 	public JButton getCancelar() {
 		return cancelar;
@@ -110,7 +87,12 @@ public class Login extends JPanel{
 		return iniciar;
 	}
 
-	public Usuarios getUsuarios() {
-		return usuarios;
+	public String getUsuario() {
+		return txtfUsuario.getText();
 	}
+
+	public String getContraseña() {
+		return txtfContraseña.getText();
+	}
+	
 }

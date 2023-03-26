@@ -19,6 +19,7 @@ public class Ventana extends JFrame{
 	
 	//Menu del panel
 	private Menu menu = new Menu();
+	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
 	//Paneles de la aplicacion
 	private Login login = new Login();
@@ -52,7 +53,8 @@ public class Ventana extends JFrame{
 				JOptionPane.showMessageDialog(null, "Ingresando al sistema...",
 						"Iniciando",JOptionPane.INFORMATION_MESSAGE);
 				
-				if(login.comprobarDatos()) {
+				//Comprueba que el usuario y contraseña sean correctos
+				if(usuarios.comprobarDatos(login.getUsuario(), login.getContraseña())) {
 					//Remueve todos los paneles
 					removerPaneles();
 					//Remueve el actionListener del boton iniciar sesion
@@ -60,7 +62,7 @@ public class Ventana extends JFrame{
 					//Añade el panel inicio
 					add(inicio);
 					//Pasa el nombre del usuario a la ventana inicio
-					inicio.setNombreUsuario(login.getUsuarios().getDatosUsuario(1));
+					inicio.setNombreUsuario(usuarios.getDatosUsuario(1));
 					//Repintar el menu
 					añadirMenu();
 					//Actualizar ventana
@@ -110,8 +112,12 @@ public class Ventana extends JFrame{
 				//Remueve el actionListener del boton actualizar
 		        cuenta.getActualizar().removeActionListener(this);
 		        
-				//Metodo para validar el registro
-				cuenta.actualizarDatos(login.getUsuarios().getDatosUsuario(0));
+				//Actualiza los datos del usuario que inicio sesion
+				usuarios.actualizarDatos(login.getUsuario(), 
+						cuenta.getNombre(), 
+						cuenta.getApellido(),
+						cuenta.getEmail(),
+						cuenta.getContraseña());
 			}
 	    });
 	}
@@ -140,8 +146,16 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve el actionListener del boton crear usuario
 				registro.getCrear().removeActionListener(this);
+				
 				//Metodo para validar el registro de usuario
-				registro.registrarUsuario();
+				usuarios.añadirUsuario(registro.getUsuario(), 
+						registro.getNombre(), 
+						registro.getApellido(),
+						registro.getEmail(),
+						registro.getContraseña());
+		  		
+		  		JOptionPane.showMessageDialog(null, "Usuario creado",
+		  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});	
 	}
@@ -263,7 +277,6 @@ public class Ventana extends JFrame{
 	public void actualizar(){
 		repaint();
 		revalidate();
-		System.out.println("Actualiza ventana\n");
 	}
 	
 	//Metodo para añadir el menu
@@ -277,15 +290,14 @@ public class Ventana extends JFrame{
 		menu.getMenu().setVisible(false);
 	}
 	
+	//Remueve todos los paneles
 	public void removerPaneles() {
-		//Remueve todos los paneles
 		remove(login);
 		remove(inicio);
 		remove(cuenta);
 		remove(lista);
 		remove(registro);
 		remove(ayuda);
-		System.out.println("Borrar paneles");
 	}
 	
 	//Metodo para cerrar la aplicación

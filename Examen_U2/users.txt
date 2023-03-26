@@ -1,3 +1,6 @@
-mimi,1,2,3,4
+mimi,hola,4,3,2
 marisol,fernandez,trapecio,@solsito,sol123
 sol,solecito,hernandez,@sol,sol123
+mikey,5,4,3,2
+obogan,gang,obo,@obo,123
+3,1,2,4,5
