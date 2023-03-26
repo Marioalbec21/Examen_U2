@@ -50,17 +50,26 @@ public class Ventana extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				JOptionPane.showMessageDialog(null, "Ingresando al sistema...",
-						"Iniciando",JOptionPane.INFORMATION_MESSAGE);	
-				//Remueve todos los paneles
-				removerPaneles();
-				//Remueve el actionListener del boton iniciar sesion
-		        login.getIniciar().removeActionListener(this);
-				//Añade el panel inicio
-				add(inicio);	
-				//Repintar el menu
-				añadirMenu();
-				//Actualizar ventana
-				actualizar();		
+						"Iniciando",JOptionPane.INFORMATION_MESSAGE);
+				
+				if(login.comprobarDatos()) {
+					//Remueve todos los paneles
+					removerPaneles();
+					//Remueve el actionListener del boton iniciar sesion
+			        login.getIniciar().removeActionListener(this);
+					//Añade el panel inicio
+					add(inicio);
+					//Pasa el nombre del usuario a la ventana inicio
+					inicio.setNombreUsuario(login.getDatosUsuario()[1]);
+					//Repintar el menu
+					añadirMenu();
+					//Actualizar ventana
+					actualizar();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El usuario o contraseña no coinciden...",
+							"Ha habido un problema",JOptionPane.INFORMATION_MESSAGE);
+				}
 			}
 	    });
 	    

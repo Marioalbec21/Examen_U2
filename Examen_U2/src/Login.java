@@ -27,6 +27,9 @@ public class Login extends JPanel{
 	private JButton cancelar;
 	private JButton iniciar;
 	
+	//Arreglo de datos del usuario
+	private String[] datosUsuario = new String[5];
+
 	public Login() {
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
@@ -81,77 +84,32 @@ public class Login extends JPanel{
 		fondo.setSize(300, 350);
 		fondo.setLocation(100,180);
 		add(fondo);
-		
-		
 	}
 	
-	public void validaciones() {
-		iniciar.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent e) {
-				
-				//ARCHIVO 
-				File archivo;
-				FileReader leer;
-				BufferedReader almacenamiento;
-				
-				String nombre = "" , lector = " ";
-			 
-			    archivo = new  File("users.txt");
-				
-			    try {
-					
-					leer = new FileReader(archivo);
-					almacenamiento = new BufferedReader(leer);
-					
-					if(!txtfUsuario.getText().equals("") || !txtfContraseña.getText().equals("") )
-					{
-						while(lector != null) {
-							lector = almacenamiento.readLine();
-							String [] informacionUser = new String[4];
-							
-							if(lector!=null)
-							{
-								String [] auxiliar = lector.split(" ");
-								
-								informacionUser = auxiliar;
-								
-							}
+	//Metodo para validar datos
+	public boolean comprobarDatos() {
+		boolean datosCorrectos = false;
 		
-							if(txtfUsuario.getText().equals(informacionUser[2]) && txtfContraseña.getText().equals(informacionUser [3]))
-							{
-								nombre = informacionUser [0];
-								String saludo = "Bienvenido " + nombre;
-								JOptionPane.showMessageDialog(null, saludo , "Iniciando",JOptionPane.INFORMATION_MESSAGE);
-								
-								break;
-								
-							}
-							else if(lector == null)
-							{
-								JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecto","Error",JOptionPane.ERROR_MESSAGE);
-							
-							}
-							
-						}
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "Favor de llenar los recuadros","Error Vacío",JOptionPane.ERROR_MESSAGE);
-					}
-					
-					
-				}
-				catch(Exception e1) 
-				{
-					System.out.println("Error: " + e1.getMessage());
-				}
+		Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
+		for(int i = 0; i < usuarios.getTamañoLista(); i++) {
+			
+			//Pasa los datos de la linea de texto a un arreglo
+			if(usuarios.getListaUsuarios(i).contains(txtfUsuario.getText())) {
+				datosUsuario = usuarios.getListaUsuarios(i).split(",");
 				
+				//Comprueba que el usuario y contraseña esten correctos
+				if(txtfUsuario.getText().contains(datosUsuario[0]) && 
+						txtfContraseña.getText().contains(datosUsuario[4])) {
+					datosCorrectos = true;
+				}
+				else {
+					datosCorrectos = false;
+				}
 			}
-			
-		});
-		
+		}
+		return datosCorrectos;
 	}
+	
 	//Getters del panel
 	public JButton getCancelar() {
 		return cancelar;
@@ -160,5 +118,8 @@ public class Login extends JPanel{
 	public JButton getIniciar() {
 		return iniciar;
 	}
-	
+
+	public String[] getDatosUsuario() {
+		return datosUsuario;
+	}
 }
