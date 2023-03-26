@@ -23,6 +23,12 @@ public class Usuarios {
         return listaUsuarios.get(indice);
     }
     
+    public void añadirUsuario(String usuario, String nombre, 
+    		String apellido, String correo, String contraseña) {
+    	
+    	listaUsuarios.add(usuario+","+nombre+","+apellido+","+correo+","+contraseña+",");
+    }
+    
     public int getTamañoLista() {
     	return listaUsuarios.size();
     }
