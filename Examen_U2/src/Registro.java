@@ -12,12 +12,18 @@ public class Registro extends JPanel{
 	private Color colorFuente = Color.white;
 	private Dimension tamañoLbl = new Dimension(140, 40);
 	private Dimension tamañoRect = new Dimension(250, 25);
-	private Point ubicacion = new Point(120, 140);  //modifica la ubicacion de los componentes
+	private Point ubicacion = new Point(120, 120);  //modifica la ubicacion de los componentes
 	private int intervalo = 35;
 	
 	//Botones de acción
 	private JButton cancelar;
 	private JButton crear;
+	private JTextField txtfNombre ;
+	private JTextField txtfApellido;
+	private JTextField txtfUsuario;
+	private JTextField txtfEmail;
+	private JTextField txtfContraseña;
+	private JTextField txtfconfirmarContra;
 	
 	public Registro() {
 		//Propiedades del panel
@@ -32,30 +38,39 @@ public class Registro extends JPanel{
 		add(titulo);
 
 		//Componentes del panel datos
-		JLabel nombre = new JLabel("Nombre Completo");
+		JLabel nombre = new JLabel("Nombre");
 		nombre.setSize(tamañoLbl);
 		nombre.setForeground(colorFuente);
 		nombre.setLocation(ubicacion);
 		
-		JTextField txtfNombre = new JTextField();
+		txtfNombre = new JTextField();
 		txtfNombre.setSize(tamañoRect);
 		txtfNombre.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JLabel apellido = new JLabel("Usuario");
+		JLabel apellido = new JLabel("Apellido");
 		apellido.setSize(tamañoLbl);
 		apellido.setForeground(colorFuente);
-		apellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		apellido.setLocation(ubicacion);
 		
-		JTextField txtfApellido = new JTextField();
+		txtfApellido = new JTextField();
 		txtfApellido.setSize(tamañoRect);
 		txtfApellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		
+		JLabel usuario = new JLabel("Usuario");
+		usuario.setSize(tamañoLbl);
+		usuario.setForeground(colorFuente);
+		usuario.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		
+	    txtfUsuario = new JTextField();
+		txtfUsuario.setSize(tamañoRect);
+		txtfUsuario.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
 		JLabel email = new JLabel("Email");
 		email.setSize(tamañoLbl);
 		email.setForeground(colorFuente);
 		email.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JTextField txtfEmail = new JTextField();
+		txtfEmail = new JTextField();
 		txtfEmail.setSize(tamañoRect);
 		txtfEmail.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
@@ -64,7 +79,7 @@ public class Registro extends JPanel{
 		contraseña.setForeground(colorFuente);
 		contraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JTextField txtfContraseña = new JTextField();
+		txtfContraseña = new JTextField();
 		txtfContraseña.setSize(tamañoRect);
 		txtfContraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
@@ -73,7 +88,7 @@ public class Registro extends JPanel{
 		confirmarContra.setForeground(colorFuente);
 		confirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JTextField txtfconfirmarContra = new JTextField();
+		txtfconfirmarContra = new JTextField();
 		txtfconfirmarContra.setSize(tamañoRect);
 		txtfconfirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 
@@ -81,6 +96,8 @@ public class Registro extends JPanel{
 		add(txtfNombre);
 		add(apellido);
 		add(txtfApellido);
+		add(usuario);
+		add(txtfUsuario);
 		add(email);
 		add(txtfEmail);
 		add(contraseña);
@@ -107,8 +124,13 @@ public class Registro extends JPanel{
 		fondo.setLocation(100,130);
 		add(fondo);
 	}
+	
 	//Metodo para registro del usuario
-	public void registro() {
+	public void registrarUsuario() {
+		Usuarios usuarios = new Usuarios("users.txt");
+		usuarios.añadirUsuario(txtfUsuario.getText(), txtfNombre.getText(), 
+				txtfApellido.getText(), txtfEmail.getText(), txtfContraseña.getText());
+		
 		JOptionPane.showMessageDialog(null, "Usuario creado",
 		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 	}

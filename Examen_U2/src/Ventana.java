@@ -140,9 +140,8 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve el actionListener del boton crear usuario
 				registro.getCrear().removeActionListener(this);
-				
 				//Metodo para validar el registro de usuario
-				registro.registro();
+				registro.registrarUsuario();
 			}
 		});	
 	}
@@ -159,7 +158,7 @@ public class Ventana extends JFrame{
 				//Remueve el actionListener del boton crear usuario
 				ayuda.getCrear().removeActionListener(this);
 				//Añade el panel inicio
-				add(registro);			
+				mostrarRegistro();	
 				//Actualizar ventana
 				actualizar();
 			}
