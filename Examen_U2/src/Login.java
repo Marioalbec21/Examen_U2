@@ -8,11 +8,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 
 public class Login extends JPanel{
 
 	private Color colorFuente = Color.white;
+	private Color colorFondosTxt = new Color(128, 208, 186);
 	private Dimension tamañoRect = new Dimension(250, 45);
 	private Point ubicacion = new Point(25, 20);
 	private int intervalo = 75;
@@ -34,29 +36,31 @@ public class Login extends JPanel{
 		setLayout(null);
 
 		//Componentes del panel datos
-		txtfUsuario = new JTextField("                   U s u a r i o");
+		txtfUsuario = new JTextField("Usuario");
 		txtfUsuario.setFont(font);
 		txtfUsuario.setForeground(colorFuente);
 		txtfUsuario.setSize(tamañoRect);
 		txtfUsuario.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		txtfUsuario.setBackground(new Color(128, 208, 186, 150));
+		txtfUsuario.setBackground(colorFondosTxt);
 		txtfUsuario.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150))); //Da color al borde
-		
-		txtfContraseña = new JTextField("                C o n t r a s e ñ a");
+		txtfUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+
+		txtfContraseña = new JTextField("Contraseña");
 		txtfContraseña.setFont(font);
 		txtfContraseña.setForeground(colorFuente);
 		txtfContraseña.setSize(tamañoRect);
 		txtfContraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		txtfContraseña.setBackground(new Color(128, 208, 186, 150));
+		txtfContraseña.setBackground(colorFondosTxt);
 		txtfContraseña.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150)));  //Da color al borde
-		
+		txtfContraseña.setHorizontalAlignment(SwingConstants.CENTER);
+
 		//Botones de accion
 		intervalo*=1.5;
 		cancelar = new JButton("Trash"); //Boton cancelar
 		cancelar.setSize(60,35);
 		cancelar.setLocation(5,310);
 		
-		iniciar = new JButton("L o g i n"); //Boton iniciar sesión
+		iniciar = new JButton("Login"); //Boton iniciar sesión
 		iniciar.setSize(270, 45);
 		iniciar.setLocation(15,240);
 		
@@ -67,7 +71,7 @@ public class Login extends JPanel{
 		imgUsuario.setBackground(new Color(128, 208, 186, 0)); //Hace invisible el fondo
 		
 		//Agrega imagen al panel
-		Imagen usuario = new Imagen("/resources/user.png",150,170,imgUsuario); 
+		Imagen usuario = new Imagen("resources/user.png",150,170,imgUsuario); 
 		add(imgUsuario);
 				
 		//Fondo verde componentes del panel
@@ -89,7 +93,7 @@ public class Login extends JPanel{
 		fondoLogin.setSize(500, 600);
 		fondoLogin.setLocation(0,-10);
 		
-		Imagen fondoLog = new Imagen("/resources/fondo5.jpg",500,600,fondoLogin);
+		Imagen fondoLog = new Imagen("resources/fondoLogin.jpg",500,600,fondoLogin);
 		add(fondoLogin);
 		
 		//Metodo para quitar el texto dentro del textfield de usuario y contraseña
@@ -101,8 +105,8 @@ public class Login extends JPanel{
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtfUsuario.getText().equals("                   U s u a r i o")){
-					txtfUsuario.setText("");
+				if(!txtfUsuario.getText().isEmpty()){
+					txtfUsuario.setText(null);
 				}
 			}
 
@@ -116,8 +120,8 @@ public class Login extends JPanel{
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txtfContraseña.getText().equals("                C o n t r a s e ñ a")){
-					txtfContraseña.setText("");
+				if(!txtfContraseña.getText().isEmpty()){
+					txtfContraseña.setText(null);
 				}
 			}
 			
