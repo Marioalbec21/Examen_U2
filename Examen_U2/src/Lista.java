@@ -19,8 +19,10 @@ public class Lista extends JPanel{
 	//Botones de accion
 	private JButton editar;
 	private JComboBox cbox1;
+	private JScrollPane sp;
 	
-	public Lista(List <String> usuarios) {
+	public Lista(Tabla tabla) {
+		
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
 		setLayout(null);
@@ -41,12 +43,8 @@ public class Lista extends JPanel{
 		cbox1 = new JComboBox();
 		cbox1.setSize(tamañoRect);
 		cbox1.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		for (int i = 0; i < usuarios.size(); i++) {
-			
-			String[] datos = usuarios.get(i).split(",");			
-			cbox1.addItem(datos[0]);
-		}
-		add(cbox1);
+		
+		añadirTabla(tabla);
 		
 		editar = new JButton("Editar a Usuario");
 		editar.setSize(tamañoRect);
@@ -56,11 +54,31 @@ public class Lista extends JPanel{
 		add(editar);
 	}
 	
+	//Metodo para actualizar la lista del JComboBox
+	public void actualizarLista(List <String> usuarios) {
+		for (int i = 0; i < usuarios.size(); i++) {
+			
+			String[] datos = usuarios.get(i).split(",");			
+			cbox1.addItem(datos[0]);
+		}
+		add(cbox1);
+	}
+	
+	//Metodo para limpiar la lista del JComboBox
+	public void limpiarLista() {
+		cbox1.removeAllItems();
+	}
+	
 	//Metodo para añadir la tabla de usuarios
 	public void añadirTabla(Tabla tabla) {
-		JScrollPane sp = new JScrollPane(tabla);
+		sp = new JScrollPane(tabla);
 		sp.setBounds(ubicacion.x, ubicacion.y += intervalo, 250, 104);
 		add(sp);		
+	}
+	
+	//Metodo para remover la tabla de la clase
+	public void removerTabla() {
+		remove(sp);
 	}
 	
 	//Metodo que regresa el usuario seleccionado del cbox

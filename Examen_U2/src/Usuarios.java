@@ -106,7 +106,8 @@ public class Usuarios {
             BufferedWriter almacen = new BufferedWriter(escribir);
 
             //Añadir al nuevo usuario
-            almacen.write("\n"+usuario+","+nombre+","+apellido+","+correo+","+contraseña);
+            almacen.write(usuario+","+nombre+","+apellido+","+correo+","+contraseña);
+            almacen.newLine();
             //Cerrar el BufferedWriter
             almacen.close();
             actualizarListaUsuarios();

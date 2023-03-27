@@ -21,13 +21,13 @@ public class Ventana extends JFrame{
 	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
 	//Lista de usuarios del panel
-	private Tabla tabla = new Tabla();
+	private Tabla tabla = new Tabla();;
 	
 	//Paneles de la aplicacion
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
 	private Cuenta cuenta = new Cuenta();
-	private Lista lista = new Lista(usuarios.getListaUsuarios());
+	private Lista lista = new Lista(tabla);
 	private Registro registro = new Registro();
 	private Ayuda ayuda  = new Ayuda();
 	
@@ -117,7 +117,10 @@ public class Ventana extends JFrame{
 		        			cuenta.getNombre(), 
 		        			cuenta.getApellido(),
 		        			cuenta.getEmail(),
-		        			cuenta.getContraseña());		        	
+		        			cuenta.getContraseña());
+		        	
+		        	JOptionPane.showMessageDialog(null, "Información actualizada.",
+			  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 		        }
 		        if(usuarioSeleccionado) {
 		        	//Actualiza los datos del usuario seleccionado
@@ -128,10 +131,10 @@ public class Ventana extends JFrame{
 		        			cuenta.getContraseña());
 		        	
 		        	usuarioSeleccionado = false;
+		        	
+		        	JOptionPane.showMessageDialog(null, "Información actualizada.",
+			  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 		        }
-				
-				JOptionPane.showMessageDialog(null, "Información actualizada.",
-		  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			}
 	    });
 	}
@@ -177,10 +180,17 @@ public class Ventana extends JFrame{
 	public void mostrarLista() {
 		add(lista);
 		
-		//Añade la tabla al panel lista
+		//Limpia y actualiza los datos de la lista de usuarios
+		lista.limpiarLista();
+		lista.actualizarLista(usuarios.getListaUsuarios());
+
+		//Limpia y actualiza la tabla de usuarios de la clase lista
+		tabla.limpiarTabla();	
+		tabla.actualizarTabla(usuarios.getListaUsuarios());
+		
+		//Remueve y añade la tabla a la clase inicio
+		lista.removerTabla();
 		lista.añadirTabla(tabla);
-		//Agrega los usuarios a la tabla del panel lista
-		tabla.setDatosTabla(usuarios.getListaUsuarios());
 		
 		//Boton editar de lista
 		lista.getEditar().addActionListener(new ActionListener() {
