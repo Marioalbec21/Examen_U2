@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Lista extends JPanel{
 	
@@ -13,9 +14,6 @@ public class Lista extends JPanel{
 	private Dimension tamañoRect = new Dimension(250, 25);
 	private Point ubicacion = new Point(120, 100);
 	private int intervalo = 35;
-	
-	//Lista de usuarios del panel
-	private Tabla tablaUsuarios = new Tabla(4,3);
 	
 	public Lista() {
 		//Propiedades del panel
@@ -47,13 +45,11 @@ public class Lista extends JPanel{
 		add(cbox1);
 		add(editar);
 		
-		//Ubicacion de la lista de usuarios
-		tablaUsuarios.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		add(tablaUsuarios);
 	}
-	
-	//Getter tabla de usuarios
-	public Tabla getTablaUsuarios() {
-		return tablaUsuarios;
+	//Metodo para añadir la tabla de usuarios
+	public void añadirTabla(Tabla tabla) {
+		JScrollPane sp = new JScrollPane(tabla);
+		sp.setBounds(ubicacion.x, ubicacion.y += intervalo, 250, 104);
+		add(sp);		
 	}
 }

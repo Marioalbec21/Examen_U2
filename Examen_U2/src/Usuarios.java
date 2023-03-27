@@ -28,6 +28,11 @@ public class Usuarios {
         }
     }
 
+    //Metodo que regresa la lista completa de usuarios
+    public List <String> getListaUsuarios() {
+        return listaUsuarios;
+    }
+    
     //Metodo que devuelve todos los datos del usuario de una linea del txt
     public String getListaUsuarios(int indice) {
         return listaUsuarios.get(indice);
@@ -111,7 +116,7 @@ public class Usuarios {
         }
     }
     
-  //Metodo para actualizar datos del usuario
+    //Metodo para actualizar datos del usuario
   	public void actualizarDatos(String username, 
   			String nombre, String apellido, String email, String contraseña) {
   		

@@ -2,7 +2,6 @@
 //JOSÉ MIGUEL MENDOZA ANAYA
 //MARIO ALBERTO CASTELLANOS
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -21,6 +20,9 @@ public class Ventana extends JFrame{
 	private Menu menu = new Menu();
 	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
+	//Lista de usuarios del panel
+	private Tabla tabla = new Tabla();
+	
 	//Paneles de la aplicacion
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
@@ -212,6 +214,10 @@ public class Ventana extends JFrame{
 				removerPaneles();
 				//Añade el panel inicio
 				add(lista);
+				//Añade la tabla al panel lista
+				lista.añadirTabla(tabla);
+				//Agrega los usuarios a la tabla del panel lista
+				tabla.setDatosTabla(usuarios.getListaUsuarios());
 				//Actualizar ventana
 				actualizar();	
 			}
