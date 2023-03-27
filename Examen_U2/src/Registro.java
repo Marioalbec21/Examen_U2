@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Registro extends JPanel{
@@ -22,8 +23,8 @@ public class Registro extends JPanel{
 	private JTextField txtfApellido;
 	private JTextField txtfUsuario;
 	private JTextField txtfEmail;
-	private JTextField txtfContraseña;
-	private JTextField txtfconfirmarContra;
+	private JPasswordField txtfContraseña;
+	private JPasswordField txtfconfirmarContra;
 	
 	public Registro() {
 		//Propiedades del panel
@@ -79,7 +80,7 @@ public class Registro extends JPanel{
 		contraseña.setForeground(colorFuente);
 		contraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		txtfContraseña = new JTextField();
+		txtfContraseña = new JPasswordField();
 		txtfContraseña.setSize(tamañoRect);
 		txtfContraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
@@ -88,7 +89,7 @@ public class Registro extends JPanel{
 		confirmarContra.setForeground(colorFuente);
 		confirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		txtfconfirmarContra = new JTextField();
+		txtfconfirmarContra = new JPasswordField();
 		txtfconfirmarContra.setSize(tamañoRect);
 		txtfconfirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 
@@ -151,10 +152,10 @@ public class Registro extends JPanel{
 	}
 
 	public String getContraseña() {
-		return txtfContraseña.getText();
+		return new String(txtfContraseña.getPassword());
 	}
 
 	public String getConfirmarContra() {
-		return txtfconfirmarContra.getText();
+		return new String(txtfconfirmarContra.getPassword());
 	}
 }

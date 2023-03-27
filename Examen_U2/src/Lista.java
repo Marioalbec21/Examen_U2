@@ -72,7 +72,7 @@ public class Lista extends JPanel{
 	//Metodo para añadir la tabla de usuarios
 	public void añadirTabla(Tabla tabla) {
 		sp = new JScrollPane(tabla);
-		sp.setBounds(ubicacion.x, ubicacion.y += intervalo, 250, 104);
+		sp.setBounds(ubicacion.x, ubicacion.y + intervalo, 250, 104);
 		add(sp);		
 	}
 	

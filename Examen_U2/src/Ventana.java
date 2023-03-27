@@ -169,10 +169,15 @@ public class Ventana extends JFrame{
 						registro.getNombre(), 
 						registro.getApellido(),
 						registro.getEmail(),
-						registro.getContraseña());
-		  		
-		  		JOptionPane.showMessageDialog(null, "Usuario creado",
-		  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+						registro.getContraseña(),
+						registro.getConfirmarContra());
+				
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel lista
+				mostrarLista();
+				//Actualizar ventana
+				actualizar();	
 			}
 		});	
 	}
@@ -201,7 +206,7 @@ public class Ventana extends JFrame{
 				//Remueve el actionListener del boton editar de lista
 				lista.getEditar().removeActionListener(this);		
 				usuarioSeleccionado = true;
-				//Añade el panel inicio
+				//Añade el panel cuenta
 				mostrarCuenta();
 				//Actualizar ventana
 				actualizar();
@@ -220,7 +225,7 @@ public class Ventana extends JFrame{
 				removerPaneles();
 				//Remueve el actionListener del boton crear usuario
 				ayuda.getCrear().removeActionListener(this);
-				//Añade el panel inicio
+				//Añade el panel registro
 				mostrarRegistro();	
 				//Actualizar ventana
 				actualizar();
@@ -235,7 +240,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel inicio
+				//Añade el panel cuenta
 				mostrarCuenta();
 				//Actualizar ventana
 				actualizar();
@@ -247,7 +252,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel inicio
+				//Añade el panel login
 				mostrarLogin();	
 				//Ocultar el menu
 				ocultarMenu();
@@ -261,7 +266,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel inicio
+				//Añade el panel lista
 				mostrarLista();
 				//Actualizar ventana
 				actualizar();	
@@ -274,7 +279,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel inicio
+				//Añade el panel registro
 				mostrarRegistro();	
 				//Actualizar ventana
 				actualizar();	
@@ -287,7 +292,7 @@ public class Ventana extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel inicio
+				//Añade el panel ayuda
 				mostrarAyuda();	
 				//Actualizar ventana
 				actualizar();	

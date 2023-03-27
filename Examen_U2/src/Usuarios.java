@@ -76,9 +76,9 @@ public class Usuarios {
 		boolean datosCorrectos = false;
 		
 		for(int i = 0; i < getTamañoLista(); i++) {
+			//Pasa los datos de la linea de texto a un arreglo
 			String[] datos = getListaUsuarios(i).split(",");
 			
-			//Pasa los datos de la linea de texto a un arreglo
 			if(datos[0].equals(usuario)) {
 				setDatosUsuario(getListaUsuarios(i).split(","));
 
@@ -97,25 +97,54 @@ public class Usuarios {
 	
 	//Metodo para añadir un nuevo usuario
     public void añadirUsuario(String usuario, String nombre, 
-            String apellido, String correo, String contraseña) {
+            String apellido, String correo, String contraseña, String confirmarContra) {
+    	for(int i = 0; i < getTamañoLista(); i++) {
+			//Pasa los datos de la linea de texto a un arreglo
+			String[] datos = getListaUsuarios(i).split(",");
+			
+			//Validaciones de registro de usuario
+			if(!datos[0].equals(usuario)) {
+				//Valida que no haya espacios en blanco
+				if(!usuario.isEmpty() && !nombre.isEmpty() && !apellido.isEmpty()
+						&& !correo.isEmpty() && !contraseña.isEmpty() && !confirmarContra.isEmpty()) {
+					//Valida que las contraseñas sean iguales
+					if(contraseña.equals(confirmarContra)) {
+						//Crea el nuevo usuario con los datos
+						try {
+				            //Crear FileWriter
+				            FileWriter escribir = new FileWriter(rutaArchivo, true);
+				            //Crear BufferedWriter 
+				            BufferedWriter almacen = new BufferedWriter(escribir);
 
-        try {
-            //Crear FileWriter
-            FileWriter escribir = new FileWriter(rutaArchivo, true);
-            //Crear BufferedWriter 
-            BufferedWriter almacen = new BufferedWriter(escribir);
+				            //Añadir al nuevo usuario
+				            almacen.write("\n"+usuario+","+nombre+","+apellido+","+correo+","+contraseña);
+				            almacen.newLine();
+				            //Cerrar el BufferedWriter
+				            almacen.close();
+				            actualizarListaUsuarios();
 
-            //Añadir al nuevo usuario
-            almacen.write(usuario+","+nombre+","+apellido+","+correo+","+contraseña);
-            almacen.newLine();
-            //Cerrar el BufferedWriter
-            almacen.close();
-            actualizarListaUsuarios();
+				        } catch (IOException e) {
 
-        } catch (IOException e) {
-
-            System.out.println("Error: " + e.getMessage());
-        }
+				            System.out.println("Error: " + e.getMessage());
+				        }
+						JOptionPane.showMessageDialog(null, "Usuario creado con éxito.",
+				  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden.",
+				  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+					}
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "No puede haber espacios en blanco.",
+			  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Usuario ya existente.",
+		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+			}
+		}
     }
     
     //Metodo para actualizar datos del usuario
