@@ -48,7 +48,7 @@ public class Lista extends JPanel{
 		add(editar);
 		
 		//Ubicacion de la lista de usuarios
-		tablaUsuarios.setUbicacion(new Point(ubicacion.x, ubicacion.y+=intervalo));
+		tablaUsuarios.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		add(tablaUsuarios);
 	}
 	
