@@ -1,10 +1,12 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class Lista extends JPanel{
 	
@@ -14,10 +16,11 @@ public class Lista extends JPanel{
 	private Point ubicacion = new Point(120, 100);
 	private int intervalo = 35;
 	
-	//Lista de usuarios del panel
-	private Tabla tablaUsuarios = new Tabla(4,3);
+	//Botones de accion
+	private JButton editar;
+	private JComboBox cbox1;
 	
-	public Lista() {
+	public Lista(List <String> usuarios) {
 		//Propiedades del panel
 		setBackground(Color.decode("#293845"));
 		setLayout(null);
@@ -35,25 +38,39 @@ public class Lista extends JPanel{
 		nombre.setForeground(colorFuente);
 		nombre.setLocation(ubicacion);
 		
-		JComboBox cbox1 = new JComboBox();
+		cbox1 = new JComboBox();
 		cbox1.setSize(tamañoRect);
 		cbox1.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		for (int i = 0; i < usuarios.size(); i++) {
+			
+			String[] datos = usuarios.get(i).split(",");			
+			cbox1.addItem(datos[0]);
+		}
+		add(cbox1);
 		
-		JButton editar = new JButton("Editar a Usuario");
+		editar = new JButton("Editar a Usuario");
 		editar.setSize(tamañoRect);
 		editar.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
 		add(nombre);
-		add(cbox1);
 		add(editar);
-		
-		//Ubicacion de la lista de usuarios
-		tablaUsuarios.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		add(tablaUsuarios);
 	}
 	
-	//Getter tabla de usuarios
-	public Tabla getTablaUsuarios() {
-		return tablaUsuarios;
+	//Metodo para añadir la tabla de usuarios
+	public void añadirTabla(Tabla tabla) {
+		JScrollPane sp = new JScrollPane(tabla);
+		sp.setBounds(ubicacion.x, ubicacion.y += intervalo, 250, 104);
+		add(sp);		
+	}
+	
+	//Metodo que regresa el usuario seleccionado del cbox
+	public String usuarioSeleccionado() {
+		String usuario = (String) cbox1.getSelectedItem();
+		return usuario;
+	}
+	
+	//Getters del panel
+	public JButton getEditar() {
+		return editar;
 	}
 }

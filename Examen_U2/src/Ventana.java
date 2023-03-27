@@ -2,7 +2,6 @@
 //JOSÉ MIGUEL MENDOZA ANAYA
 //MARIO ALBERTO CASTELLANOS
 
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
@@ -21,11 +20,14 @@ public class Ventana extends JFrame{
 	private Menu menu = new Menu();
 	private Usuarios usuarios = new Usuarios("users.txt"); //Lee el archivo users.txt
 
+	//Lista de usuarios del panel
+	private Tabla tabla = new Tabla();
+	
 	//Paneles de la aplicacion
 	private Login login = new Login();
 	private Inicio inicio = new Inicio();
 	private Cuenta cuenta = new Cuenta();
-	private Lista lista = new Lista();
+	private Lista lista = new Lista(usuarios.getListaUsuarios());
 	private Registro registro = new Registro();
 	private Ayuda ayuda  = new Ayuda();
 	
@@ -85,6 +87,7 @@ public class Ventana extends JFrame{
 	    });
 	}
 	
+	boolean usuarioSeleccionado = false; //Variable que guarda si un usuario ha sido seleccionado de la lista
 	public void mostrarCuenta() {
 		add(cuenta);
 		
@@ -110,12 +113,27 @@ public class Ventana extends JFrame{
 				//Remueve el actionListener del boton actualizar
 		        cuenta.getActualizar().removeActionListener(this);
 		        
-				//Actualiza los datos del usuario que inicio sesion
-				usuarios.actualizarDatos(login.getUsuario(), 
-						cuenta.getNombre(), 
-						cuenta.getApellido(),
-						cuenta.getEmail(),
-						cuenta.getContraseña());
+		        if(!usuarioSeleccionado) {
+		        	//Actualiza los datos del usuario que inicio sesion
+		        	usuarios.actualizarDatos(login.getUsuario(), 
+		        			cuenta.getNombre(), 
+		        			cuenta.getApellido(),
+		        			cuenta.getEmail(),
+		        			cuenta.getContraseña());		        	
+		        }
+		        if(usuarioSeleccionado) {
+		        	//Actualiza los datos del usuario seleccionado
+		        	usuarios.actualizarDatos(lista.usuarioSeleccionado(), 
+		        			cuenta.getNombre(), 
+		        			cuenta.getApellido(),
+		        			cuenta.getEmail(),
+		        			cuenta.getContraseña());
+		        	
+		        	usuarioSeleccionado = false;
+		        }
+				
+				JOptionPane.showMessageDialog(null, "Información actualizada.",
+		  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			}
 	    });
 	}
@@ -156,6 +174,31 @@ public class Ventana extends JFrame{
 		  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 			}
 		});	
+	}
+	
+	public void mostrarLista() {
+		add(lista);
+		
+		//Añade la tabla al panel lista
+		lista.añadirTabla(tabla);
+		//Agrega los usuarios a la tabla del panel lista
+		tabla.setDatosTabla(usuarios.getListaUsuarios());
+		
+		//Boton editar de lista
+		lista.getEditar().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//Remueve todos los paneles
+				removerPaneles();
+				//Remueve el actionListener del boton editar de lista
+				lista.getEditar().removeActionListener(this);		
+				usuarioSeleccionado = true;
+				//Añade el panel inicio
+				mostrarCuenta();
+				//Actualizar ventana
+				actualizar();
+			}
+		});
 	}
 	
 	public void mostrarAyuda() {
@@ -211,11 +254,10 @@ public class Ventana extends JFrame{
 				//Remueve todos los paneles
 				removerPaneles();
 				//Añade el panel inicio
-				add(lista);
+				mostrarLista();
 				//Actualizar ventana
 				actualizar();	
 			}
-			
 		});
 		
 		menu.getMenu().getItem4().addActionListener(new ActionListener() {
