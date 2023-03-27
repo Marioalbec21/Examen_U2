@@ -12,7 +12,7 @@ public class Registro extends JPanel{
 	private Color colorFuente = Color.white;
 	private Dimension tamañoLbl = new Dimension(140, 40);
 	private Dimension tamañoRect = new Dimension(250, 25);
-	private Point ubicacion = new Point(120, 120);  //modifica la ubicacion de los componentes
+	private Point ubicacion = new Point(120, 80);  //modifica la ubicacion de los componentes
 	private int intervalo = 35;
 	
 	//Botones de acción
@@ -50,7 +50,7 @@ public class Registro extends JPanel{
 		JLabel apellido = new JLabel("Apellido");
 		apellido.setSize(tamañoLbl);
 		apellido.setForeground(colorFuente);
-		apellido.setLocation(ubicacion);
+		apellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
 		txtfApellido = new JTextField();
 		txtfApellido.setSize(tamañoRect);
@@ -121,7 +121,7 @@ public class Registro extends JPanel{
 		JPanel fondo = new JPanel();
 		fondo.setBackground(Color.decode("#526687"));
 		fondo.setSize(300, 420);
-		fondo.setLocation(100,130);
+		fondo.setLocation(100,80);
 		add(fondo);
 	}
 		

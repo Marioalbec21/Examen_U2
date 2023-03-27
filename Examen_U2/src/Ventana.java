@@ -37,8 +37,6 @@ public class Ventana extends JFrame{
 	    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    setLocationRelativeTo(null);
 	    setResizable(false);
-		getContentPane().setBackground(Color.decode("#154D82"));
-	    
 		//Inicia Pantalla y login
 		pantallaCarga();
 	}
@@ -252,6 +250,7 @@ public class Ventana extends JFrame{
 		Carga carga = new Carga();
 	    add(carga);
 	    Tiempo(carga);
+	    actualizar();
 	}
 	
 	//Hace invisible el panel cuando pasan 3 segundos	
