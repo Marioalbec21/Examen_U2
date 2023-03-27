@@ -120,7 +120,7 @@ public class Login extends JPanel{
 					txtfContraseña.setText("");
 				}
 			}
-
+			
 			@Override
 			public void focusLost(FocusEvent e) {
 				
