@@ -76,9 +76,10 @@ public class Usuarios {
 		boolean datosCorrectos = false;
 		
 		for(int i = 0; i < getTamañoLista(); i++) {
+			String[] datos = getListaUsuarios(i).split(",");
 			
 			//Pasa los datos de la linea de texto a un arreglo
-			if(getListaUsuarios(i).contains(usuario+",")) {
+			if(datos[0].equals(usuario)) {
 				setDatosUsuario(getListaUsuarios(i).split(","));
 
 				//Comprueba que el usuario y contraseña esten correctos
@@ -121,9 +122,10 @@ public class Usuarios {
   			String nombre, String apellido, String email, String contraseña) {
   		
   		for(int i = 0; i < getTamañoLista(); i++) {
+  			String[] datos = getListaUsuarios(i).split(",");
   			
   			//Actualiza los datos del usuario
-  			if(getListaUsuarios(i).contains(username)) {
+  			if(datos[0].equals(username)) {
   				setDatosUsuario(0, username);
 	  			setDatosUsuario(1, nombre);
 	  			setDatosUsuario(2, apellido);
@@ -135,8 +137,6 @@ public class Usuarios {
   				actualizarListaUsuarios();
   			}
   		}
-  		JOptionPane.showMessageDialog(null, "Información actualizada.",
-  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
   	}
   	
   	//Metodo paea actualizar un usuario existente
@@ -156,9 +156,12 @@ public class Usuarios {
                     //Escribe la nueva línea con los datos actualizados
                     String nuevaLinea = String.join(",", datosUsuario);
                     almacen.write(nuevaLinea);
+                    almacen.newLine();
                 } else {
                     //Escribe la línea original
-                	almacen.write("\n"+linea);
+                	almacen.write(linea);
+                    almacen.newLine();
+
                 }
                 lineaActual++;
             }

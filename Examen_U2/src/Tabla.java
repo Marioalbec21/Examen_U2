@@ -15,13 +15,11 @@ public class Tabla extends JTable{
 	
 	//Metodo para actualizar la tabla de usuarios
 	public void setDatosTabla(List <String> usuarios) {
+		//modeloTabla.setRowCount(0);
 		for (int i = 0; i < usuarios.size(); i++) {
 			
 			String[] datos = usuarios.get(i).split(",");
-			String usuario = datos[0];
-			String nombre = datos[1];
-
-			modeloTabla.addRow(new Object[]{usuario, nombre, null});
+			modeloTabla.addRow(new Object[]{datos[0], datos[1], null});
 		}
 	}
 }
