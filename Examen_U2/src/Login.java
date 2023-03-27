@@ -55,7 +55,7 @@ public class Login extends JPanel{
 		txtfContraseña.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150)));  //Da color al borde
 		txtfContraseña.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		ImageIcon icon = new ImageIcon("Examen_U2/resources/borrar.png");
+		ImageIcon icon = new ImageIcon("resources/borrar.png");
 		 
 		//Botones de accion
 		intervalo*=1.5;
