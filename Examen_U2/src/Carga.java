@@ -16,7 +16,7 @@ public class Carga extends JPanel {
 		add(fondo);
 		
 		//Agrega imagen a la pantalla de carga
-		Imagen splash = new Imagen("resources/mano.gif", 400,300,fondo);
+		Imagen splash = new Imagen("mano.gif", 400,300,fondo);
 		
 	}
 }

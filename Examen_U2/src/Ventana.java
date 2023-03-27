@@ -44,6 +44,7 @@ public class Ventana extends JFrame{
 	}
 	
 	public void mostrarLogin() {
+		login.reiniciarTxt();
 	    add(login);
 	    
 	    //Boton acceder de login
@@ -79,10 +80,7 @@ public class Ventana extends JFrame{
 	    login.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Saliendo del sistema...",
-						          "Iniciando",JOptionPane.INFORMATION_MESSAGE);
-				//Salir de la aplicación
-				salir();
+				login.vaciarTxt();
 			}
 	    });
 	}
@@ -339,10 +337,5 @@ public class Ventana extends JFrame{
 		remove(lista);
 		remove(registro);
 		remove(ayuda);
-	}
-	
-	//Metodo para cerrar la aplicación
-	public void salir() {
-		System.exit(0);
 	}
 }
