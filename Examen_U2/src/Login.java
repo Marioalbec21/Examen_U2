@@ -23,7 +23,8 @@ public class Login extends JPanel{
 	//Nombre de usuario y contraseña
 	private JTextField txtfUsuario ;
 	private JTextField txtfContraseña;
-		
+	//private String carpeta = "resources/";
+	private String carpeta = "";
 	//Botones de acción
 	private JButton cancelar;
 	private JButton iniciar;
@@ -55,7 +56,7 @@ public class Login extends JPanel{
 		txtfContraseña.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150)));  //Da color al borde
 		txtfContraseña.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		ImageIcon icon = new ImageIcon("resources/borrar.png");
+		ImageIcon icon = new ImageIcon(carpeta+"borrar.png");
 		 
 		//Botones de accion
 		intervalo*=1.5;
@@ -76,7 +77,7 @@ public class Login extends JPanel{
 		imgUsuario.setBackground(new Color(128, 208, 186, 0)); //Hace invisible el fondo
 		
 		//Agrega imagen al panel
-		Imagen usuario = new Imagen("resources/user.png",150,170,imgUsuario); 
+		Imagen usuario = new Imagen(carpeta+"user.png",150,170,imgUsuario); 
 		add(imgUsuario);
 				
 		//Fondo verde componentes del panel
@@ -98,7 +99,7 @@ public class Login extends JPanel{
 		fondoLogin.setSize(500, 600);
 		fondoLogin.setLocation(0,-10);
 		
-		Imagen fondoLog = new Imagen("resources/fondoLogin.jpg",500,600,fondoLogin);
+		Imagen fondoLog = new Imagen(carpeta+"fondoLogin.jpg",500,600,fondoLogin);
 		add(fondoLogin);
 		
 		//Metodo para quitar el texto dentro del textfield de usuario y contraseña

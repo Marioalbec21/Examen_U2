@@ -1,20 +1,27 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Point;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class Cuenta extends JPanel{
 
-	private Color colorFuente = Color.white;
-	private Dimension tamañoLbl = new Dimension(100, 40);
-	private Dimension tamañoRect = new Dimension(250, 25);
-	private Point ubicacion = new Point(120, 190);
-	private int intervalo = 35;
+	private Color colorFondos = new Color(255, 255, 255);
+	private Color colorFuente = Color.gray;
+	private Dimension tamañoRect = new Dimension(250, 35);
+	private Point ubicacion = new Point(130, 170);
+	private int intervalo = 55;
 	
+	//Fuente 
+	private Font font = new Font("Arial", Font.PLAIN, 15);
 	//Botones de acción
 	private JButton cancelar;
 	private JButton actualizar;
@@ -24,83 +31,87 @@ public class Cuenta extends JPanel{
 	private JTextField txtfApellido;
 	private JTextField txtfEmail;
 	private JTextField txtfContraseña;
-		
+	
+	//private String carpeta = "resources/";
+    private String carpeta = "";
+    
 	public Cuenta() {
 		//Propiedades del panel
-		setBackground(Color.decode("#293845"));
+		setBackground(Color.white);
 		setLayout(null);
 		
 		//Componentes del panel
-		JLabel titulo = new JLabel("Mi cuenta personal", JLabel.CENTER);
-		titulo.setForeground(colorFuente);
-		titulo.setSize(150, 40);
-		titulo.setLocation(170,30);
+		JLabel titulo = new JLabel("Mi Cuenta", JLabel.CENTER);
+		titulo.setFont(new Font("Arial", Font.BOLD, 35));
+		titulo.setForeground(Color.white);
+		titulo.setSize(400, 40);
+		titulo.setLocation(50,140);
 		add(titulo);
 
-		//Componentes del panel datos
-		JLabel nombre = new JLabel("Nombre");
-		nombre.setSize(tamañoLbl);
-		nombre.setForeground(colorFuente);
-		nombre.setLocation(ubicacion);
-		
-		txtfNombre = new JTextField();
+		//Componentes del panel datos	
+		txtfNombre = new JTextField("Nombre");
+		txtfNombre.setFont(font);
+		txtfNombre.setForeground(colorFuente);
 		txtfNombre.setSize(tamañoRect);
 		txtfNombre.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		txtfNombre.setBackground(colorFondos);
+		txtfNombre.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
+		txtfNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel apellido = new JLabel("Apellidos");
-		apellido.setSize(tamañoLbl);
-		apellido.setForeground(colorFuente);
-		apellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfApellido = new JTextField();
+		txtfApellido = new JTextField("Apellidos");
+		txtfApellido.setFont(font);
+		txtfApellido.setForeground(colorFuente);
 		txtfApellido.setSize(tamañoRect);
 		txtfApellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		txtfApellido.setBackground(colorFondos);
+		txtfApellido.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
+		txtfApellido.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel email = new JLabel("Email");
-		email.setSize(tamañoLbl);
-		email.setForeground(colorFuente);
-		email.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfEmail = new JTextField();
+		txtfEmail = new JTextField("Correo");
+		txtfEmail.setFont(font);
+		txtfEmail.setForeground(colorFuente);
 		txtfEmail.setSize(tamañoRect);
 		txtfEmail.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		txtfEmail.setBackground(colorFondos);
+		txtfEmail.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
+		txtfEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		JLabel contraseña = new JLabel("Contraseña");
-		contraseña.setSize(tamañoLbl);
-		contraseña.setForeground(colorFuente);
-		contraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfContraseña = new JTextField();
+		txtfContraseña = new JTextField("Contraseña");
+		txtfContraseña.setFont(font);
+		txtfContraseña.setForeground(colorFuente);
 		txtfContraseña.setSize(tamañoRect);
 		txtfContraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		txtfContraseña.setBackground(colorFondos);
+		txtfContraseña.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
+		txtfContraseña.setHorizontalAlignment(SwingConstants.LEFT);
 
-		add(nombre);
 		add(txtfNombre);
-		add(apellido);
 		add(txtfApellido);
-		add(email);
 		add(txtfEmail);
-		add(contraseña);
 		add(txtfContraseña);
-
+		ImageIcon icon = new ImageIcon(carpeta+"iconInicio.png");
 		//Botones de accion
 		intervalo*=1.5;
-		cancelar = new JButton("Cancelar"); //Boton cancelar
-		cancelar.setSize(90,25);
-		cancelar.setLocation(ubicacion.x, ubicacion.y+=intervalo);
+		cancelar = new JButton(icon); //Boton inicio
+		cancelar.setSize(70,65);
+		cancelar.setLocation(20, ubicacion.y+=intervalo);
+		cancelar.setOpaque(false);
 		actualizar = new JButton("Actualizar datos"); //Boton actualizar
-		actualizar.setSize(131,25);
-		actualizar.setLocation(ubicacion.x+ubicacion.x, ubicacion.y);
+		actualizar.setSize(131,45);
+		actualizar.setLocation(60+ubicacion.x, ubicacion.y-25);
 
 		add(cancelar);
 		add(actualizar);
 		
+		
+		
 		//Fondo componentes del panel
 		JPanel fondo = new JPanel();
-		fondo.setBackground(Color.decode("#526687"));
-		fondo.setSize(300, 350);
-		fondo.setLocation(100,180);
+		fondo.setBackground(Color.white);
+		fondo.setSize(510, 610);
+		fondo.setLocation(-5,-60);
 		add(fondo);
+		Imagen fondoInicio = new Imagen(carpeta+"fondoRegistro.png",500,610,fondo);
 	}
 	
 	//Getters del panel
