@@ -179,7 +179,6 @@ public class Usuarios {
     	}
     }
 	
-    
     //Metodo para actualizar datos del usuario
   	public void actualizarDatos(String username, 
   			String nombre, String apellido, String email, String contraseña) {

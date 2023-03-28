@@ -2,13 +2,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
-
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -30,7 +32,7 @@ public class Cuenta extends JPanel{
 	private JTextField txtfNombre;
 	private JTextField txtfApellido;
 	private JTextField txtfEmail;
-	private JTextField txtfContraseña;
+	private JPasswordField txtfContraseña;
     
 	public Cuenta(String ruta) {
 		//Propiedades del panel
@@ -55,7 +57,7 @@ public class Cuenta extends JPanel{
 		txtfNombre.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
 		txtfNombre.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		txtfApellido = new JTextField("Apellidos");
+		txtfApellido = new JTextField("Apellido");
 		txtfApellido.setFont(font);
 		txtfApellido.setForeground(colorFuente);
 		txtfApellido.setSize(tamañoRect);
@@ -64,7 +66,7 @@ public class Cuenta extends JPanel{
 		txtfApellido.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
 		txtfApellido.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		txtfEmail = new JTextField("Correo");
+		txtfEmail = new JTextField("Correo electrónico");
 		txtfEmail.setFont(font);
 		txtfEmail.setForeground(colorFuente);
 		txtfEmail.setSize(tamañoRect);
@@ -73,7 +75,7 @@ public class Cuenta extends JPanel{
 		txtfEmail.setBorder(BorderFactory.createLineBorder(colorFondos)); //Da color al borde
 		txtfEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		
-		txtfContraseña = new JTextField("Contraseña");
+		txtfContraseña = new JPasswordField("********");
 		txtfContraseña.setFont(font);
 		txtfContraseña.setForeground(colorFuente);
 		txtfContraseña.setSize(tamañoRect);
@@ -100,8 +102,6 @@ public class Cuenta extends JPanel{
 		add(cancelar);
 		add(actualizar);
 		
-		
-		
 		//Fondo componentes del panel
 		JPanel fondo = new JPanel();
 		fondo.setBackground(Color.white);
@@ -109,6 +109,8 @@ public class Cuenta extends JPanel{
 		fondo.setLocation(-5,-60);
 		add(fondo);
 		Imagen fondoInicio = new Imagen(ruta+"fondoRegistro.png",500,610,fondo);
+		
+		listenerTxtf();
 	}
 	
 	//Getters del panel
@@ -133,6 +135,76 @@ public class Cuenta extends JPanel{
 	}
 
 	public String getContraseña() {
-		return txtfContraseña.getText();
+		return new String(txtfContraseña.getPassword());
+	}
+	
+	public void listenerTxtf() {
+		txtfNombre.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfNombre.getText().equals("Nombre")){
+					txtfNombre.setText(null);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfNombre.getText().equals("")) {
+					txtfNombre.setText("Nombre");					
+				}
+			}
+		});
+		
+		txtfApellido.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfApellido.getText().equals("Apellido")){
+					txtfApellido.setText(null);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfApellido.getText().equals("")) {
+					txtfApellido.setText("Apellido");					
+				}
+			}
+		});
+		
+		txtfEmail.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfEmail.getText().equals("Correo electrónico")){
+					txtfEmail.setText(null);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfEmail.getText().equals("")) {
+					txtfEmail.setText("Correo electrónico");					
+				}
+			}
+		});
+		
+		txtfContraseña.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(new String(txtfContraseña.getPassword()).equals("********")){
+					txtfContraseña.setText(null);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(new String(txtfContraseña.getPassword()).equals("")){
+					txtfContraseña.setText("********");					
+				}
+			}
+		});
 	}
 }
