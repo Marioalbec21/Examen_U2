@@ -1,4 +1,6 @@
 import java.util.List;
+
+import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -12,6 +14,7 @@ public class Tabla extends JTable{
 		modeloTabla = new DefaultTableModel();
 		modeloTabla.setColumnIdentifiers(new Object[]{"Usuario", "Nombre", "Acciones"});
 	    setModel(modeloTabla);
+	   
 	}
 	
 	//Metodo para actualizar la tabla
@@ -19,7 +22,13 @@ public class Tabla extends JTable{
 		for (int i = 0; i < usuarios.size(); i++) {			
 
 			String[] datos = usuarios.get(i).split(",");
-			modeloTabla.addRow(new Object[]{datos[0], datos[1], null});
+			
+			this.setDefaultRenderer(Object.class, new Render());
+			
+			JButton editar = new JButton("editar");
+			this.setRowHeight(30);
+			modeloTabla.addRow(new Object[]{datos[0], datos[1], editar});
+			isCellEditable(modeloTabla.getRowCount(),4);
 		}
 	}
 	
@@ -27,4 +36,8 @@ public class Tabla extends JTable{
 	public void limpiarTabla() {
 		modeloTabla.setRowCount(0);
 	}
+	
+	 public boolean isCellEditable(int row, int columnas) {
+	    	return false;
+	 }
 }
