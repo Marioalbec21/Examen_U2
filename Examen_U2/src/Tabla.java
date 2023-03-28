@@ -25,7 +25,7 @@ public class Tabla extends JTable{
 			
 			this.setDefaultRenderer(Object.class, new Render());
 			
-			JButton editar = new JButton("editar");
+			JButton editar = new JButton("Eliminar");
 			this.setRowHeight(30);
 			modeloTabla.addRow(new Object[]{datos[0], datos[1], editar});
 			isCellEditable(modeloTabla.getRowCount(),4);
