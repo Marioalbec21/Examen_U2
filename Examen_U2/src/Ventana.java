@@ -24,7 +24,7 @@ public class Ventana extends JFrame{
 	private Tabla tabla = new Tabla();;
 	
 	//Ruta de recursos (cambiar por "" si estas en mac)
-	private String ruta = ""; 
+	private String ruta = "resources/"; 
 	
 	//Paneles de la aplicacion
 	private Login login = new Login(ruta);
@@ -73,7 +73,7 @@ public class Ventana extends JFrame{
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "El usuario o contraseña no coinciden...",
-							"Ha habido un problema",JOptionPane.INFORMATION_MESSAGE);
+							"Ha habido un problema",JOptionPane.ERROR_MESSAGE);
 				}
 			}
 	    });
@@ -121,8 +121,8 @@ public class Ventana extends JFrame{
 		        			cuenta.getEmail(),
 		        			cuenta.getContraseña());
 		        	
-		        	JOptionPane.showMessageDialog(null, "Información actualizada.",
-			  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+		        	//Pasa el nombre del usuario logeado al inicio
+		        	inicio.setNombreUsuario(usuarios.getDatosUsuario(1));
 		        }
 		        if(usuarioSeleccionado) {
 		        	//Actualiza los datos del usuario seleccionado
@@ -133,10 +133,13 @@ public class Ventana extends JFrame{
 		        			cuenta.getContraseña());
 		        	
 		        	usuarioSeleccionado = false;
-		        	
-		        	JOptionPane.showMessageDialog(null, "Información actualizada.",
-			  		          "Mensaje",JOptionPane.INFORMATION_MESSAGE);
 		        }
+				//Remueve todos los paneles
+				removerPaneles();
+				//Añade el panel cuenta
+				mostrarCuenta();
+				//Actualizar ventana
+				actualizar();
 			}
 	    });
 	}
@@ -169,8 +172,8 @@ public class Ventana extends JFrame{
 				
 				//Remueve todos los paneles
 				removerPaneles();
-				//Añade el panel lista
-				mostrarLista();
+				//Añade el panel registro
+				mostrarRegistro();
 				//Actualizar ventana
 				actualizar();	
 			}

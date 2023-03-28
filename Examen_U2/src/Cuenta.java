@@ -103,14 +103,16 @@ public class Cuenta extends JPanel{
 		cancelar = new JButton(icon); //Boton inicio
 		cancelar.setSize(70,65);
 		cancelar.setLocation(400, 10);
+		cancelar.setOpaque(true);
+		cancelar.setBackground(Color.decode("#aeecdb"));
 		cancelar.setBorderPainted(false);
-		
+
 		actualizar = new JButton("Actualizar datos"); //Boton actualizar
 		actualizar.setFont(font);
 		actualizar.setForeground(Color.gray);
 		actualizar.setBackground(Color.white);
-		actualizar.setSize(131,45);
-		actualizar.setLocation(60+ubicacion.x, ubicacion.y+60);
+		actualizar.setSize(140,45);
+		actualizar.setLocation(50+ubicacion.x, ubicacion.y+60);
 
 		add(cancelar);
 		add(actualizar);

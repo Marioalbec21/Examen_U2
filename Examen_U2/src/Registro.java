@@ -115,7 +115,8 @@ public class Registro extends JPanel{
 		intervalo*=1.5;
 		cancelar = new JButton(icon); //Boton eliminar
 		cancelar.setSize(42,45);
-		cancelar.setLocation(385,500);
+		cancelar.setLocation(385,490);
+		cancelar.setBackground(Color.decode("#95D3C9"));
 		cancelar.setBorderPainted(false);
 		
 		crear = new JButton("Crear Usuario"); //Boton para crear un usuario

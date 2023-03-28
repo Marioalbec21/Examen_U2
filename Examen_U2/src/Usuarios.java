@@ -182,23 +182,50 @@ public class Usuarios {
     //Metodo para actualizar datos del usuario
   	public void actualizarDatos(String username, 
   			String nombre, String apellido, String email, String contraseña) {
-  		
-  		for(int i = 0; i < getTamañoLista(); i++) {
-  			String[] datos = getListaUsuarios(i).split(",");
   			
-  			//Actualiza los datos del usuario
-  			if(datos[0].equals(username)) {
-  				setDatosUsuario(0, username);
-	  			setDatosUsuario(1, nombre);
-	  			setDatosUsuario(2, apellido);
-	  			setDatosUsuario(3, email);
-	  			setDatosUsuario(4, contraseña);
+  			//Valida que el usuario ingrese sus datos
+  			if (!nombre.contains("Nombre") && !apellido.contains("Apellido") && !email.contains("Correo")) {
+  				
+  				if(!nombre.contains(" ") && !apellido.contains(" ") 
+  						&& !email.contains(" ") && !contraseña.contains(" ")) {
+  					
+  	  				if(!contraseña.contains("*")) {
+  	  					
+  	  					//Actualizar los datos del usuario
+  	  	  			    for(int i = 0; i < getTamañoLista(); i++) {
+  	  	  			        String[] datos = getListaUsuarios(i).split(",");
+  	  	  			        
+  	  	  			        //Actualiza los datos del usuario
+  	  	  			        if(datos[0].equals(username)) {
+  	  	  			            setDatosUsuario(0, username);
+  	  	  			            setDatosUsuario(1, nombre);
+  	  	  			            setDatosUsuario(2, apellido);
+  	  	  			            setDatosUsuario(3, email);
+  	  	  			            setDatosUsuario(4, contraseña);
 
-  				//Actualiza los datos del usuario en el users.txt
-  				editarUsuario(i);
-  				actualizarListaUsuarios();
+  	  	  			            JOptionPane.showMessageDialog(null, "Información actualizada.",
+  	  	  			            		"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+  	  			        	
+  	  	  			            //Actualiza los datos del usuario en el users.txt
+  	  	  			            editarUsuario(i);
+  	  	  			            actualizarListaUsuarios();
+  	  	  			        }
+  	  	  			    }
+  	  				}
+  	  				else {
+  	  					JOptionPane.showMessageDialog(null, "Porfavor escriba una contraseña.",
+  		  		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+  	  				}
+  				}
+  				else {
+  					JOptionPane.showMessageDialog(null, "No puede haber espacios en blanco.",
+	  		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+  				}
   			}
-  		}
+  			else {
+  				JOptionPane.showMessageDialog(null, "Porfavor escriba sus datos.",
+  	  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+  			}
   	}
   	
   	//Metodo paea actualizar un usuario existente
