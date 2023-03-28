@@ -19,9 +19,9 @@ public class Lista extends JPanel{
 	private JButton editar;
 	private JComboBox cbox1;
 	private JScrollPane sp;
-	
+	private Tabla tabla;
 	public Lista(Tabla tabla,String ruta) {
-		
+		this.tabla = tabla;
 		//Propiedades del panel
 		setBackground(Color.decode("#AEECDB"));
 		setLayout(null);
@@ -105,5 +105,21 @@ public class Lista extends JPanel{
 	//Getters del panel
 	public JButton getEditar() {
 		return editar;
+	}
+	
+	@SuppressWarnings("unused")
+	private void tablaMouseClicked(final java.awt.event.MouseEvent evt) {
+		int column = tabla.getColumnModel().getColumnIndexAtX(evt.getX());
+		int row = evt.getY()/tabla.getRowHeight();
+		
+		if(row < tabla.getRowCount() && row >= 0 && column < tabla.getColumnCount() && column >= 0) {
+			Object value  = tabla.getValueAt(row, column);
+			if(value instanceof JButton) {
+				((JButton) value).doClick();
+				JButton boton = (JButton) value;
+				
+				System.out.println("BOTON ELIMINAR");
+			}
+		}
 	}
 }
