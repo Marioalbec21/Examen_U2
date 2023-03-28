@@ -152,8 +152,7 @@ public class Usuarios {
 	        		            BufferedWriter almacen = new BufferedWriter(escribir);
 	
 	        		            //Añadir al nuevo usuario
-	        		            almacen.write(usuario+","+nombre+","+apellido+","+correo+","+contraseña);
-	        		            almacen.newLine();
+	        		            almacen.write("\n"+usuario+","+nombre+","+apellido+","+correo+","+contraseña);
 	        		            //Cerrar el BufferedWriter
 	        		            almacen.close();
 	        		            actualizarListaUsuarios();
@@ -190,7 +189,6 @@ public class Usuarios {
     //Metodo para actualizar datos del usuario
   	public void actualizarDatos(String username, 
   			String nombre, String apellido, String email, String contraseña) {
-  		boolean datosActualizados = false;
   		
   		//Valida que los datos no estén en blanco o sean iguales a sus nombres 
 	    if (!nombre.contains(" ") && !nombre.contains("Nombre")) {
@@ -205,8 +203,6 @@ public class Usuarios {
 		            //Actualiza los datos del usuario en el users.txt
 		            editarUsuario(i);
 		            actualizarListaUsuarios();
-		            
-		            datosActualizados = true;
 		        }
 		    }	   
 	    }
@@ -222,9 +218,7 @@ public class Usuarios {
 
 		            //Actualiza los datos del usuario en el users.txt
 		            editarUsuario(i);
-		            actualizarListaUsuarios();
-		            
-		            datosActualizados = true;
+		            actualizarListaUsuarios();		            
 		        }
 		    }
 	    }
@@ -240,8 +234,6 @@ public class Usuarios {
 			        		//Actualiza los datos del usuario en el users.txt
 			        		editarUsuario(i);
 			        		actualizarListaUsuarios();
-			        		
-			        		datosActualizados = true;
 			        	}		        	
 			        }
 			}
@@ -262,17 +254,17 @@ public class Usuarios {
 		            //Actualiza los datos del usuario en el users.txt
 		            editarUsuario(i);
 		            actualizarListaUsuarios();
-
-		            datosActualizados = true;
 		        }
 		    }
 	    }
-	    if(!datosActualizados) {
+	    if(nombre.contains("Nombre") && !apellido.contains("Apellido") &&
+	    		!email.contains("Correo") && !contraseña.contains("*")){
+	    	
 	    	JOptionPane.showMessageDialog(null, "Datos incorrectos.",
 	  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
-            JOptionPane.showMessageDialog(null, "Datos actualizados.",
+            JOptionPane.showMessageDialog(null, "Dato actualizado.",
             		"Mensaje",JOptionPane.INFORMATION_MESSAGE);
 	    }
 	}

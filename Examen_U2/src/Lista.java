@@ -34,7 +34,7 @@ public class Lista extends JPanel{
 		add(titulo);
 		
 		//Componentes del panel datos
-		JLabel nombre = new JLabel("Editar");
+		JLabel nombre = new JLabel("Seleccionar");
 		nombre.setFont(new Font("Arial", Font.BOLD, 20));
 		nombre.setForeground(Color.gray);
 		nombre.setSize(400, 40);
