@@ -30,7 +30,7 @@ public class Ventana extends JFrame{
 	private Login login = new Login(ruta);
 	private Inicio inicio = new Inicio(ruta);
 	private Cuenta cuenta = new Cuenta(ruta);
-	private Lista lista = new Lista(tabla);
+	private Lista lista = new Lista(tabla,ruta);
 	private Registro registro = new Registro(ruta);
 	private Ayuda ayuda  = new Ayuda(ruta);
 	

@@ -20,7 +20,7 @@ public class Cuenta extends JPanel{
 	private Dimension tamañoRect = new Dimension(250, 35);
 	private Point ubicacion = new Point(130, 140);
 	private int intervalo = 55;
-	
+	private JLabel titulo;
 	//Fuente 
 	private Font font = new Font("Arial", Font.PLAIN, 15);
 	//Botones de acción
@@ -39,7 +39,7 @@ public class Cuenta extends JPanel{
 		setLayout(null);
 		
 		//Componentes del panel
-		JLabel titulo = new JLabel("Mi Cuenta", JLabel.CENTER);
+		titulo = new JLabel("Editar Cuenta", JLabel.CENTER);
 		titulo.setFont(new Font("Arial", Font.BOLD, 35));
 		titulo.setForeground(Color.white);
 		titulo.setSize(400, 40);
@@ -221,5 +221,15 @@ public class Cuenta extends JPanel{
 				}
 			}
 		});
+	}
+
+	public void setTitulo(String usuario) {
+		titulo.setText(usuario);
+	}
+	public void vaciarDatos() {
+		txtfNombre.setText("Nombre");
+		txtfApellido.setText("Apellido");
+		txtfEmail.setText("Correo electrónico");
+		txtfContraseña.setText("********");
 	}
 }
