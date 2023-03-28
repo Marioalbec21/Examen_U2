@@ -6,10 +6,8 @@ import javax.swing.JPanel;
 public class Inicio extends JPanel{
 	
 	private JLabel titulo;
-	//private String carpeta = "resources/";
-	private String carpeta = "";
 	
-	public Inicio() {
+	public Inicio(String ruta) {
 		//Propiedades del panel
 		setBackground(Color.white);
 		setLayout(null);
@@ -28,7 +26,7 @@ public class Inicio extends JPanel{
 		iconoInicio.setSize(150, 170);
 		iconoInicio.setLocation(175,15);
 		add(iconoInicio);
-		Imagen inicio = new Imagen(carpeta+"inicio.png",iconoInicio);
+		Imagen inicio = new Imagen(ruta+"inicio.png",iconoInicio);
 		
 		//Fondo de inicio
 		JPanel fondo = new JPanel();
@@ -37,7 +35,7 @@ public class Inicio extends JPanel{
 		fondo.setLocation(0,100);
 		add(fondo);
 				
-		Imagen fondoInicio = new Imagen(carpeta+"fondoInicio.png",fondo);
+		Imagen fondoInicio = new Imagen(ruta+"fondoInicio.png",fondo);
 	}
 
 	//Getters de la clase inicio

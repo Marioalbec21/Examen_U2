@@ -2,9 +2,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 public class Carga extends JPanel {
-	//private String carpeta = "resources/";
-	private String carpeta = "";
-	public Carga() {
+	public Carga(String ruta) {
 		//Propiedades del panel
 		setBackground(Color.decode("#AEECDB"));
 		setLayout(null);
@@ -17,6 +15,6 @@ public class Carga extends JPanel {
 		add(fondo);
 		
 		//Agrega imagen a la pantalla de carga
-		Imagen splash = new Imagen(carpeta+"mano.gif", 400,300,fondo);
+		Imagen splash = new Imagen(ruta+"mano.gif", 400,300,fondo);
 	}
 }

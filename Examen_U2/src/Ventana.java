@@ -23,10 +23,13 @@ public class Ventana extends JFrame{
 	//Lista de usuarios del panel
 	private Tabla tabla = new Tabla();;
 	
+	//Ruta de recursos (cambiar por "" si estas en mac)
+	private String ruta = "resources/"; 
+	
 	//Paneles de la aplicacion
-	private Login login = new Login();
-	private Inicio inicio = new Inicio();
-	private Cuenta cuenta = new Cuenta();
+	private Login login = new Login(ruta);
+	private Inicio inicio = new Inicio(ruta);
+	private Cuenta cuenta = new Cuenta(ruta);
 	private Lista lista = new Lista(tabla);
 	private Registro registro = new Registro();
 	private Ayuda ayuda  = new Ayuda();
@@ -44,7 +47,6 @@ public class Ventana extends JFrame{
 	}
 	
 	public void mostrarLogin() {
-		login.reiniciarTxt();
 	    add(login);
 	    
 	    //Boton acceder de login
@@ -80,7 +82,7 @@ public class Ventana extends JFrame{
 	    login.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				login.vaciarTxt();
+				login.vaciarDatos();
 			}
 	    });
 	}
@@ -302,7 +304,7 @@ public class Ventana extends JFrame{
 
 	//Metodo para la pantalla de carga
 	public void pantallaCarga() {
-		Carga carga = new Carga();
+		Carga carga = new Carga(ruta);
 	    add(carga);
 	    Tiempo(carga);
 	    actualizar();

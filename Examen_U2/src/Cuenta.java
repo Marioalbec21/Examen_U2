@@ -31,11 +31,8 @@ public class Cuenta extends JPanel{
 	private JTextField txtfApellido;
 	private JTextField txtfEmail;
 	private JTextField txtfContraseña;
-	
-	//private String carpeta = "resources/";
-    private String carpeta = "";
     
-	public Cuenta() {
+	public Cuenta(String ruta) {
 		//Propiedades del panel
 		setBackground(Color.white);
 		setLayout(null);
@@ -89,7 +86,7 @@ public class Cuenta extends JPanel{
 		add(txtfApellido);
 		add(txtfEmail);
 		add(txtfContraseña);
-		ImageIcon icon = new ImageIcon(carpeta+"iconInicio.png");
+		ImageIcon icon = new ImageIcon(ruta+"iconInicio.png");
 		//Botones de accion
 		intervalo*=1.5;
 		cancelar = new JButton(icon); //Boton inicio
@@ -111,7 +108,7 @@ public class Cuenta extends JPanel{
 		fondo.setSize(510, 610);
 		fondo.setLocation(-5,-60);
 		add(fondo);
-		Imagen fondoInicio = new Imagen(carpeta+"fondoRegistro.png",500,610,fondo);
+		Imagen fondoInicio = new Imagen(ruta+"fondoRegistro.png",500,610,fondo);
 	}
 	
 	//Getters del panel

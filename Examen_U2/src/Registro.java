@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,72 +41,35 @@ public class Registro extends JPanel{
 		titulo.setLocation(170,30);
 		add(titulo);
 
-		//Componentes del panel datos
-		JLabel nombre = new JLabel("Nombre");
-		nombre.setSize(tamañoLbl);
-		nombre.setForeground(colorFuente);
-		nombre.setLocation(ubicacion);
-		
-		txtfNombre = new JTextField();
+		txtfNombre = new JTextField("Nombre");
 		txtfNombre.setSize(tamañoRect);
 		txtfNombre.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		JLabel apellido = new JLabel("Apellido");
-		apellido.setSize(tamañoLbl);
-		apellido.setForeground(colorFuente);
-		apellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfApellido = new JTextField();
+	
+		txtfApellido = new JTextField("Apellido");
 		txtfApellido.setSize(tamañoRect);
 		txtfApellido.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JLabel usuario = new JLabel("Usuario");
-		usuario.setSize(tamañoLbl);
-		usuario.setForeground(colorFuente);
-		usuario.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-	    txtfUsuario = new JTextField();
+	    txtfUsuario = new JTextField("Usuario");
 		txtfUsuario.setSize(tamañoRect);
 		txtfUsuario.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JLabel email = new JLabel("Email");
-		email.setSize(tamañoLbl);
-		email.setForeground(colorFuente);
-		email.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfEmail = new JTextField();
+		txtfEmail = new JTextField("Correo electrónico");
 		txtfEmail.setSize(tamañoRect);
 		txtfEmail.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 		
-		JLabel contraseña = new JLabel("Contraseña");
-		contraseña.setSize(tamañoLbl);
-		contraseña.setForeground(colorFuente);
-		contraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfContraseña = new JPasswordField();
+		txtfContraseña = new JPasswordField("********");
 		txtfContraseña.setSize(tamañoRect);
 		txtfContraseña.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		JLabel confirmarContra = new JLabel("Confirmar Contraseña");
-		confirmarContra.setSize(tamañoLbl);
-		confirmarContra.setForeground(colorFuente);
-		confirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
-		
-		txtfconfirmarContra = new JPasswordField();
+	
+		txtfconfirmarContra = new JPasswordField("********");
 		txtfconfirmarContra.setSize(tamañoRect);
 		txtfconfirmarContra.setLocation(ubicacion.x, ubicacion.y+=intervalo);
 
-		add(nombre);
 		add(txtfNombre);
-		add(apellido);
 		add(txtfApellido);
-		add(usuario);
 		add(txtfUsuario);
-		add(email);
 		add(txtfEmail);
-		add(contraseña);
 		add(txtfContraseña);
-		add(confirmarContra);
 		add(txtfconfirmarContra);
 		
 		//Botones inferiores
@@ -124,6 +90,9 @@ public class Registro extends JPanel{
 		fondo.setSize(300, 420);
 		fondo.setLocation(100,80);
 		add(fondo);
+		
+		//Metodo para ocultar y mostrar el texto de los recuadros
+		listenerTxtf();
 	}
 		
 	//Getters del panel
@@ -157,5 +126,108 @@ public class Registro extends JPanel{
 
 	public String getConfirmarContra() {
 		return new String(txtfconfirmarContra.getPassword());
+	}
+	
+	public void listenerTxtf() {
+		txtfNombre.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfNombre.getText().equals("Nombre")){
+					txtfNombre.setText(null);
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfNombre.getText().equals("")) {
+					txtfNombre.setText("Nombre");					
+				}
+			}
+		});
+		
+		txtfApellido.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfApellido.getText().equals("Apellido")){
+					txtfApellido.setText(null);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfApellido.getText().equals("")) {
+					txtfApellido.setText("Apellido");					
+				}
+			}
+		});	
+		
+		txtfUsuario.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfUsuario.getText().equals("Usuario")){
+					txtfUsuario.setText(null);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfUsuario.getText().equals("")) {
+					txtfUsuario.setText("Usuario");					
+				}
+			}
+		});	
+		
+		txtfEmail.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtfEmail.getText().equals("Correo electrónico")){
+					txtfEmail.setText(null);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(txtfEmail.getText().equals("")) {
+					txtfEmail.setText("Correo electrónico");					
+				}
+			}
+		});	
+		txtfContraseña.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(new String(txtfContraseña.getPassword()).equals("********")){
+					txtfContraseña.setText(null);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(new String(txtfContraseña.getPassword()).equals("")){
+					txtfContraseña.setText("********");
+				}
+			}
+		});	
+		
+		txtfconfirmarContra.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(new String(txtfconfirmarContra.getPassword()).equals("********")){
+					txtfconfirmarContra.setText(null);
+				}
+			}
+			
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(new String(txtfconfirmarContra.getPassword()).equals("")){
+					txtfconfirmarContra.setText("********");
+				}
+			}
+		});	
 	}
 }

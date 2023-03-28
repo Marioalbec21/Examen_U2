@@ -8,6 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -22,9 +23,7 @@ public class Login extends JPanel{
 
 	//Nombre de usuario y contraseña
 	private JTextField txtfUsuario ;
-	private JTextField txtfContraseña;
-	//private String carpeta = "resources/";
-	private String carpeta = "";
+	private JPasswordField txtfContraseña;
 	//Botones de acción
 	private JButton cancelar;
 	private JButton iniciar;
@@ -32,7 +31,7 @@ public class Login extends JPanel{
 	//Fuente 
 	private Font font = new Font("Arial", Font.BOLD, 15);
 	
-	public Login() {
+	public Login(String ruta) {
 		 
 		//Propiedades del panel
 		setLayout(null);
@@ -47,7 +46,7 @@ public class Login extends JPanel{
 		txtfUsuario.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150))); //Da color al borde
 		txtfUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 
-		txtfContraseña = new JTextField("Contraseña");
+		txtfContraseña = new JPasswordField("********");
 		txtfContraseña.setFont(font);
 		txtfContraseña.setForeground(colorFuente);
 		txtfContraseña.setSize(tamañoRect);
@@ -56,7 +55,7 @@ public class Login extends JPanel{
 		txtfContraseña.setBorder(BorderFactory.createLineBorder(new Color(128, 208, 186, 150)));  //Da color al borde
 		txtfContraseña.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		ImageIcon icon = new ImageIcon(carpeta+"borrar.png");
+		ImageIcon icon = new ImageIcon(ruta+"borrar.png");
 		 
 		//Botones de accion
 		intervalo*=1.5;
@@ -65,6 +64,7 @@ public class Login extends JPanel{
 		cancelar.setOpaque(true);
 		cancelar.setBackground(new Color(174, 236, 219, 150));
 		cancelar.setLocation(5,310);
+		cancelar.setBorderPainted(false);
 		
 		iniciar = new JButton("Login"); //Boton iniciar sesión
 		iniciar.setSize(270, 45);
@@ -77,7 +77,7 @@ public class Login extends JPanel{
 		imgUsuario.setBackground(new Color(128, 208, 186, 0)); //Hace invisible el fondo
 		
 		//Agrega imagen al panel
-		Imagen usuario = new Imagen(carpeta+"user.png",150,170,imgUsuario); 
+		Imagen usuario = new Imagen(ruta+"user.png",150,170,imgUsuario); 
 		add(imgUsuario);
 				
 		//Fondo verde componentes del panel
@@ -99,7 +99,7 @@ public class Login extends JPanel{
 		fondoLogin.setSize(500, 600);
 		fondoLogin.setLocation(0,-10);
 		
-		Imagen fondoLog = new Imagen(carpeta+"fondoLogin.jpg",500,600,fondoLogin);
+		Imagen fondoLog = new Imagen(ruta+"fondoLogin.jpg",500,600,fondoLogin);
 		add(fondoLogin);
 		
 		//Metodo para quitar el texto dentro del textfield de usuario y contraseña
@@ -111,14 +111,16 @@ public class Login extends JPanel{
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(!txtfUsuario.getText().isEmpty()){
+				if(txtfUsuario.getText().equals("Usuario")){
 					txtfUsuario.setText(null);
 				}
 			}
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+				if(txtfUsuario.getText().equals("")) {
+					txtfUsuario.setText("Usuario");					
+				}
 			}
 		});
 		
@@ -126,14 +128,16 @@ public class Login extends JPanel{
 
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(!txtfContraseña.getText().isEmpty()){
+				if(new String(txtfContraseña.getPassword()).equals("********")){
 					txtfContraseña.setText(null);
 				}
 			}
-			
+
 			@Override
 			public void focusLost(FocusEvent e) {
-				
+				if(new String(txtfContraseña.getPassword()).equals("")) {
+					txtfContraseña.setText("********");					
+				}
 			}
 		});	
 	}
@@ -152,16 +156,10 @@ public class Login extends JPanel{
 	}
 
 	public String getContraseña() {
-		return txtfContraseña.getText();
+		return new String(txtfContraseña.getPassword());
 	}
-	
-	public void vaciarTxt() {
-		 txtfUsuario.setText("");
-		 txtfContraseña.setText("");
-	}
-	
-	public void reiniciarTxt() {
+	public void vaciarDatos() {
 		 txtfUsuario.setText("Usuario");
-		 txtfContraseña.setText("Contraseña");
+		 txtfContraseña.setText("********");
 	}
 }
