@@ -104,15 +104,23 @@ public class Usuarios {
 			//Pasa los datos de la linea de texto a un arreglo
 			String[] datos = getListaUsuarios(i).split(",");
 			
-			//Validaciones de registro de usuario
-			if(!datos[0].equals(usuario)) {
-				usuarioNuevo = true;
+			if(!getListaUsuarios().toString().contains(correo)) {
+				//Validaciones de registro de usuario
+				if(!datos[0].equals(usuario)) {
+					usuarioNuevo = true;
+				}
+				else {
+			    	usuarioNuevo = false;
+			    	JOptionPane.showMessageDialog(null, "Usuario ya existente.",
+			  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+					i = getTamañoLista();
+				}
 			}
 			else {
-		    	usuarioNuevo = false;
-		    	JOptionPane.showMessageDialog(null, "Usuario ya existente.",
-		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
-				i = getTamañoLista();
+		    		usuarioNuevo = false;
+		        	JOptionPane.showMessageDialog(null, "Correo ya existente.",
+			  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+					i = getTamañoLista();
 			}
     	}
     	if(usuarioNuevo) {
@@ -182,51 +190,92 @@ public class Usuarios {
     //Metodo para actualizar datos del usuario
   	public void actualizarDatos(String username, 
   			String nombre, String apellido, String email, String contraseña) {
-  			
-  			//Valida que el usuario ingrese sus datos
-  			if (!nombre.contains("Nombre") && !apellido.contains("Apellido") && !email.contains("Correo")) {
-  				
-  				if(!nombre.contains(" ") && !apellido.contains(" ") 
-  						&& !email.contains(" ") && !contraseña.contains(" ")) {
-  					
-  	  				if(!contraseña.contains("*")) {
-  	  					
-  	  					//Actualizar los datos del usuario
-  	  	  			    for(int i = 0; i < getTamañoLista(); i++) {
-  	  	  			        String[] datos = getListaUsuarios(i).split(",");
-  	  	  			        
-  	  	  			        //Actualiza los datos del usuario
-  	  	  			        if(datos[0].equals(username)) {
-  	  	  			            setDatosUsuario(0, username);
-  	  	  			            setDatosUsuario(1, nombre);
-  	  	  			            setDatosUsuario(2, apellido);
-  	  	  			            setDatosUsuario(3, email);
-  	  	  			            setDatosUsuario(4, contraseña);
+  		boolean datosActualizados = false;
+  		
+  		//Valida que los datos no estén en blanco o sean iguales a sus nombres 
+	    if (!nombre.contains(" ") && !nombre.contains("Nombre")) {
+	    	for(int i = 0; i < getTamañoLista(); i++) {
+		        String[] datos = getListaUsuarios(i).split(",");
+		        
+		        //Actualiza los datos del usuario
+		        if(datos[0].equals(username)) {
+		            setDatosUsuario(0, username);
+		            setDatosUsuario(1, nombre);
+		            
+		            //Actualiza los datos del usuario en el users.txt
+		            editarUsuario(i);
+		            actualizarListaUsuarios();
+		            
+		            datosActualizados = true;
+		        }
+		    }	   
+	    }
+	    
+	    if (!apellido.contains(" ") && !apellido.contains("Apellido")) {
+	    	for(int i = 0; i < getTamañoLista(); i++) {
+		        String[] datos = getListaUsuarios(i).split(",");
+		        
+		        //Actualiza los datos del usuario
+		        if(datos[0].equals(username)) {
+		            setDatosUsuario(0, username);
+		            setDatosUsuario(2, apellido);
 
-  	  	  			            JOptionPane.showMessageDialog(null, "Información actualizada.",
-  	  	  			            		"Mensaje",JOptionPane.INFORMATION_MESSAGE);
-  	  			        	
-  	  	  			            //Actualiza los datos del usuario en el users.txt
-  	  	  			            editarUsuario(i);
-  	  	  			            actualizarListaUsuarios();
-  	  	  			        }
-  	  	  			    }
-  	  				}
-  	  				else {
-  	  					JOptionPane.showMessageDialog(null, "Porfavor escriba una contraseña.",
-  		  		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
-  	  				}
-  				}
-  				else {
-  					JOptionPane.showMessageDialog(null, "No puede haber espacios en blanco.",
-	  		  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
-  				}
-  			}
-  			else {
-  				JOptionPane.showMessageDialog(null, "Porfavor escriba sus datos.",
-  	  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
-  			}
-  	}
+		            //Actualiza los datos del usuario en el users.txt
+		            editarUsuario(i);
+		            actualizarListaUsuarios();
+		            
+		            datosActualizados = true;
+		        }
+		    }
+	    }
+	    
+	    if (!email.contains(" ") && !email.contains("Correo")) {
+	    	if(!getListaUsuarios().toString().contains(email)) {
+		    	for(int i = 0; i < getTamañoLista(); i++) {
+			        String[] datos = getListaUsuarios(i).split(",");
+			        	//Actualiza los datos del usuario
+			        	if(datos[0].equals(username)) {
+			        		setDatosUsuario(3, email);
+			        		
+			        		//Actualiza los datos del usuario en el users.txt
+			        		editarUsuario(i);
+			        		actualizarListaUsuarios();
+			        		
+			        		datosActualizados = true;
+			        	}		        	
+			        }
+			}
+	    	else {
+	    		JOptionPane.showMessageDialog(null, "Correo ya existente.",
+	    				"Mensaje",JOptionPane.ERROR_MESSAGE);
+	    	}
+	    }
+	    
+	    if (!contraseña.contains(" ") && !contraseña.contains("*")) {
+		    for(int i = 0; i < getTamañoLista(); i++) {
+		        String[] datos = getListaUsuarios(i).split(",");
+		        
+		        //Actualiza los datos del usuario
+		        if(datos[0].equals(username)) {
+		            setDatosUsuario(4, contraseña);
+
+		            //Actualiza los datos del usuario en el users.txt
+		            editarUsuario(i);
+		            actualizarListaUsuarios();
+
+		            datosActualizados = true;
+		        }
+		    }
+	    }
+	    if(!datosActualizados) {
+	    	JOptionPane.showMessageDialog(null, "Datos incorrectos.",
+	  		          "Mensaje",JOptionPane.ERROR_MESSAGE);
+	    }
+	    else {
+            JOptionPane.showMessageDialog(null, "Datos actualizados.",
+            		"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+	    }
+	}
   	
   	//Metodo paea actualizar un usuario existente
     public void editarUsuario(int indiceLinea) {

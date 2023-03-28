@@ -90,6 +90,7 @@ public class Ventana extends JFrame{
 	boolean usuarioSeleccionado = false; //Variable que guarda si un usuario ha sido seleccionado de la lista
 	public void mostrarCuenta() {
 		add(cuenta);
+		cuenta.vaciarDatos();
 		
 		//Boton cancelar de cuenta
 		cuenta.getCancelar().addActionListener(new ActionListener() {
@@ -146,6 +147,7 @@ public class Ventana extends JFrame{
 	
 	public void mostrarRegistro() {
 		add(registro);
+		registro.vaciarDatos();
 		
 		//Boton cancelar de registro
 		registro.getCancelar().addActionListener(new ActionListener() {

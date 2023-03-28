@@ -1,1 +1,2 @@
 admin,Miguel,Mendoza,admin@gmail.com,admin
+Jona,Jonathan,Soto,jsoto@alu.uabcs.mx,123
