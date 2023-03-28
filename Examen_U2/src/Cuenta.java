@@ -8,7 +8,6 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -19,7 +18,7 @@ public class Cuenta extends JPanel{
 	private Color colorFondos = new Color(255, 255, 255);
 	private Color colorFuente = Color.gray;
 	private Dimension tamañoRect = new Dimension(250, 35);
-	private Point ubicacion = new Point(130, 170);
+	private Point ubicacion = new Point(130, 140);
 	private int intervalo = 55;
 	
 	//Fuente 
@@ -44,7 +43,7 @@ public class Cuenta extends JPanel{
 		titulo.setFont(new Font("Arial", Font.BOLD, 35));
 		titulo.setForeground(Color.white);
 		titulo.setSize(400, 40);
-		titulo.setLocation(50,140);
+		titulo.setLocation(50,130);
 		add(titulo);
 
 		//Componentes del panel datos	
@@ -88,16 +87,30 @@ public class Cuenta extends JPanel{
 		add(txtfApellido);
 		add(txtfEmail);
 		add(txtfContraseña);
+		
+		//Titulo boton inicio
+		JLabel tituloInicio = new JLabel("Inicio", JLabel.CENTER);
+		tituloInicio.setFont(new Font("Arial", Font.BOLD, 22));
+		tituloInicio.setForeground(Color.white); 
+		tituloInicio.setSize(100, 20);
+		tituloInicio.setLocation(385,80);
+		add(tituloInicio);
+				
 		ImageIcon icon = new ImageIcon(ruta+"iconInicio.png");
+		
 		//Botones de accion
 		intervalo*=1.5;
 		cancelar = new JButton(icon); //Boton inicio
 		cancelar.setSize(70,65);
-		cancelar.setLocation(20, ubicacion.y+=intervalo);
-		cancelar.setOpaque(false);
+		cancelar.setLocation(400, 10);
+		cancelar.setBorderPainted(false);
+		
 		actualizar = new JButton("Actualizar datos"); //Boton actualizar
+		actualizar.setFont(font);
+		actualizar.setForeground(Color.gray);
+		actualizar.setBackground(Color.white);
 		actualizar.setSize(131,45);
-		actualizar.setLocation(60+ubicacion.x, ubicacion.y-25);
+		actualizar.setLocation(60+ubicacion.x, ubicacion.y+60);
 
 		add(cancelar);
 		add(actualizar);

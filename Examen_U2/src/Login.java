@@ -7,6 +7,7 @@ import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -18,7 +19,7 @@ public class Login extends JPanel{
 	private Color colorFuente = Color.white;
 	private Color colorFondos = new Color(128, 208, 186);
 	private Dimension tamañoRect = new Dimension(250, 45);
-	private Point ubicacion = new Point(25, 20);
+	private Point ubicacion = new Point(75, 55);
 	private int intervalo = 75;
 
 	//Nombre de usuario y contraseña
@@ -29,12 +30,20 @@ public class Login extends JPanel{
 	private JButton iniciar;
 	
 	//Fuente 
-	private Font font = new Font("Arial", Font.BOLD, 15);
+	private Font font = new Font("Arial", Font.BOLD, 16);
 	
 	public Login(String ruta) {
 		 
 		//Propiedades del panel
 		setLayout(null);
+		
+		//Titulo login
+		JLabel titulo = new JLabel("A c c e d e r", JLabel.CENTER);
+		titulo.setFont(new Font("Arial", Font.BOLD, 35));
+		titulo.setForeground(Color.white);
+		titulo.setSize(400, 40);
+		titulo.setLocation(50,180);
+		add(titulo);
 
 		//Componentes del panel datos
 		txtfUsuario = new JTextField("Usuario");
@@ -59,33 +68,37 @@ public class Login extends JPanel{
 		 
 		//Botones de accion
 		intervalo*=1.5;
-		cancelar = new JButton(icon); //Boton cancelar
+		cancelar = new JButton(icon); //Boton eliminar
 		cancelar.setSize(42,45);
+		cancelar.setLocation(350,330);
 		cancelar.setOpaque(true);
-		cancelar.setBackground(new Color(174, 236, 219, 150));
-		cancelar.setLocation(5,310);
+		cancelar.setBackground(Color.decode("#82A69C"));
 		cancelar.setBorderPainted(false);
 		
-		iniciar = new JButton("Login"); //Boton iniciar sesión
-		iniciar.setSize(270, 45);
-		iniciar.setLocation(15,240);
+		iniciar = new JButton("L o g i n"); //Boton iniciar sesión
+		iniciar.setFont(font);
+		iniciar.setForeground(Color.gray);
+		iniciar.setSize(290, 55);
+		iniciar.setLocation(55,270);
+		iniciar.setBackground(Color.white);
 		
 		//Fondo icono usuario
 		JPanel imgUsuario = new JPanel();
 		imgUsuario.setSize(150, 170);
-		imgUsuario.setLocation(175,75);
-		imgUsuario.setBackground(new Color(128, 208, 186, 0)); //Hace invisible el fondo
+		imgUsuario.setLocation(175,5);
+		imgUsuario.setBackground(new Color(0, 0, 0, 0)); //Hace invisible el fondo
 		
 		//Agrega imagen al panel
 		Imagen usuario = new Imagen(ruta+"user.png",150,170,imgUsuario); 
+		
 		add(imgUsuario);
 				
 		//Fondo verde componentes del panel
 		JPanel fondo = new JPanel();
-		fondo.setBackground(new Color(174, 236, 219, 150));
+		fondo.setBackground(Color.decode("#82A69C"));
 		fondo.setLayout(null);
-		fondo.setSize(300, 380);
-		fondo.setLocation(100,180);
+		fondo.setSize(400, 380);
+		fondo.setLocation(50,120);
 		
 		fondo.add(txtfUsuario);
 		fondo.add(txtfContraseña);

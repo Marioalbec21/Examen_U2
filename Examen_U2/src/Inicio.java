@@ -14,12 +14,12 @@ public class Inicio extends JPanel{
 		
 		//Componentes del panel
 		titulo = new JLabel("", JLabel.CENTER); //Texto de bienvenida
-		titulo.setFont(new Font("Comic Sans", Font.BOLD,40));
+		titulo.setFont(new Font("Arial", Font.BOLD,40));
 		titulo.setForeground(Color.decode("#505252"));
 		titulo.setSize(400,80);
-		titulo.setLocation(10,140);
+		titulo.setLocation(50,140);
 		add(titulo);
-		
+	
 		//Imagen icono inicio
 		JPanel iconoInicio = new JPanel();
 		iconoInicio.setBackground(Color.white);
@@ -40,6 +40,6 @@ public class Inicio extends JPanel{
 
 	//Getters de la clase inicio
 	public void setNombreUsuario(String nombreUsuario) {
-		titulo.setText("¡Hola! "+nombreUsuario);
+		titulo.setText("¡Hola "+nombreUsuario + "!");
 	}
 }

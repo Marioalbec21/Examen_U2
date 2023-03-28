@@ -24,15 +24,15 @@ public class Ventana extends JFrame{
 	private Tabla tabla = new Tabla();;
 	
 	//Ruta de recursos (cambiar por "" si estas en mac)
-	private String ruta = "resources/"; 
+	private String ruta = ""; 
 	
 	//Paneles de la aplicacion
 	private Login login = new Login(ruta);
 	private Inicio inicio = new Inicio(ruta);
 	private Cuenta cuenta = new Cuenta(ruta);
 	private Lista lista = new Lista(tabla);
-	private Registro registro = new Registro();
-	private Ayuda ayuda  = new Ayuda();
+	private Registro registro = new Registro(ruta);
+	private Ayuda ayuda  = new Ayuda(ruta);
 	
 	public Ventana() {
 		//Propiedades de la ventana
@@ -148,14 +148,7 @@ public class Ventana extends JFrame{
 		registro.getCancelar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//Remueve todos los paneles
-				removerPaneles();
-				//Remueve el actionListener del boton cancelar
-				registro.getCancelar().removeActionListener(this);
-				//Añade el panel inicio
-				add(inicio);	
-				//Actualizar ventana
-				actualizar();
+				registro.vaciarDatos();
 			}
 		});
 		
